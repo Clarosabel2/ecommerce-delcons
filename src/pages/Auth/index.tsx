@@ -5,20 +5,17 @@ export default function index() {
     return (
         <div className="flex items-center justify-center w-screen h-screen bg-gray-200">
             <div className="flex w-11/12 overflow-hidden text-white shadow-2xl md:w-3/4 lg:w-2/3 h-3/4 rounded-2xl bg-slate-700">
-
                 {/* Información lateral */}
-                <div className="flex flex-col justify-center w-1/2 p-6 bg-slate-800">
-                    <h2 className="mb-4 text-3xl font-bold">¡Bienvenido a DelCons!</h2>
-                    <p className="text-sm text-gray-300">
-                        Ingresa tus credenciales para acceder a tu cuenta y
-                        gestionar tus pedidos fácilmente.
-                    </p>
+                <div className="flex flex-col justify-center w-1/2 p-6 bg-slate-300">
+                    <img
+                        src="/src/assets/logo_large.png"
+                        className="object-contain h-40"
+                    />
                 </div>
 
                 {/* Formulario */}
                 <div className="flex flex-col items-center justify-center w-1/2 p-6 text-gray-800 bg-white">
                     <form className="flex flex-col w-full max-w-sm">
-                        
                         <h2 className="mb-6 text-2xl font-bold text-center">
                             Iniciar Sesión
                         </h2>
@@ -55,7 +52,7 @@ export default function index() {
                             />
                         </div>
 
-                        <Button type="submit">Iniciar sesión</Button>
+                        <Button type="submit" className={"text-center"}>Iniciar sesión</Button>
                     </form>
 
                     <p className="mt-4 text-sm">
