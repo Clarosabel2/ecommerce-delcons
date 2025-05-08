@@ -56,12 +56,11 @@ export default function CartComponent() {
     };
 
     const handleMouseLeave = () => {
-        
         timeoutRef.current = setTimeout(() => {
             setIsHovered(false);
             timeoutRef.current = setTimeout(() => {
                 setIsVisible(false);
-            }, 200);
+            }, 300);
         }, 100);
     };
 
@@ -107,9 +106,13 @@ export default function CartComponent() {
                                         />
                                     </section>
                                     <section className="flex flex-col w-full">
-                                        <p><strong>{item.product.name}</strong></p>
-                                        <p>Cantidad: {item.quantity}</p>
-                                        <p>Subtotal: {item.subtotal}</p>
+                                        <p>
+                                            <strong>{item.product.name}</strong>
+                                        </p>
+                                        <div className="ml-2 text-xs">
+                                            <p>Cantidad: {item.quantity}</p>
+                                            <p>Subtotal: ${item.subtotal}</p>
+                                        </div>
                                     </section>
                                     <button className="p-2 text-red-500 border cursor-pointer rounded-xl hover:text-red-700 hover:bg-gray-100">
                                         <FaTrash />
