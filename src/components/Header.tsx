@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Logo from "./Logo";
 import AnimatedLink from "./AnimatedLink";
-import Cart from "./Cart";
+import Cart from "./CartComponent";
 
 export default function Header() {
     const navegate = useNavigate();
