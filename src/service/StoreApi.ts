@@ -1,7 +1,7 @@
 import Category from "../models/Category";
 import Product from "../models/Product";
 import Rating from "../models/Rating";
-import capitalize from "../utils/StringUtils";
+import capitalize from "../utils/stringUtils";
 
 const API_URL = "https://fakestoreapi.com/products/";
 
