@@ -8,7 +8,7 @@ export default function index() {
                 {/* Información lateral */}
                 <div className="flex flex-col justify-center w-1/2 p-6 bg-slate-300">
                     <img
-                        src="/src/assets/logo_large.png"
+                        src="/logo_large.png"
                         className="object-contain h-40"
                     />
                 </div>
