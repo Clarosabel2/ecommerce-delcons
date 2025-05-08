@@ -1,14 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface AnimatedLinkProps {
     href?: string;
     children: React.ReactNode;
 }
 
-export default function AnimatedLink({ href, children }: AnimatedLinkProps) {
+export default function AnimatedLink({
+    href = "",
+    children,
+}: AnimatedLinkProps) {
     return (
-        <a
-            href={href}
+        <Link
+            to={href}
             className="
                         ml-2
                         relative cursor-pointer inline-block 
@@ -19,6 +23,6 @@ export default function AnimatedLink({ href, children }: AnimatedLinkProps) {
                         hover:after:w-full"
         >
             {children}
-        </a>
+        </Link>
     );
 }
