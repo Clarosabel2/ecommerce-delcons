@@ -10,12 +10,17 @@ import Rating from "../../models/Rating";
 import ScrollToTop from "../../components/common/ScrollToTop";
 import Button from "../../components/Button";
 import RatingStar from "../../components/RatingStar";
+import { useCart } from "../../hooks/userCart";
+import { Item } from "../../models/Cart";
 
 export default function index() {
     const { id } = useParams();
     {
         /*const produdct : Product=*/
     }
+
+    const { cart, addItem, removeItem } = useCart();
+
     const [product, setProduct] = useState<Product>();
     const [loading, setLoading] = useState(true);
 
@@ -91,8 +96,11 @@ export default function index() {
                         <p className="mt-6 mr-10 text-base leading-relaxed text-gray-700">
                             {product?.description}
                         </p>
-                        
-                        <Button className={"p-2 flex flex-row"}>
+
+                        <Button
+                            className={"p-2 flex flex-row"}
+                            onClick={() => addItem(new Item(1, 1, product))}
+                        >
                             <FaCartPlus />
                             Agregar al Carrito
                         </Button>

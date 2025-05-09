@@ -4,26 +4,15 @@ import { getAllProducts } from "../service/StoreApi";
 import FilterPanel from "./FilterPanel";
 
 export default function Main() {
-    /*Cuando necesitás guardar y modificar valores locales del componente (como formularios, toggles, arrays, contadores, etc.).*/
     const [products, setProducts] = useState([]);
     const [categorySelect, setCategorySelect] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
-
-    /*Cuando querés ejecutar algo en el "ciclo de vida" del componente, como:
-
-    Llamadas a APIs (fetch)
-    Suscripciones
-    Lógica al montar o desmontar
-    Reacciones a cambios de estado o props */
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 setLoading(true);
-                const category =
-                    categorySelect.length === 1 ? categorySelect[0] : null;
-                const result = await getAllProducts();
-                setProducts(result);
+                setProducts(await getAllProducts());
             } catch (error) {
                 console.error("Error cargando productos:", error);
             } finally {

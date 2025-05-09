@@ -26,15 +26,7 @@ export const getProductById = async (id: string): Promise<Product> => {
     }
     const data = await res.json();
 
-    return new Product(
-        id,
-        data.title,
-        data.price,
-        data.description,
-        new Category(1, data.category),
-        data.image,
-        new Rating(data.rating.rate, data.rating.count)
-    );
+    return instanceProduct(data);
 };
 //Se obtiene la lista de categorías de los productos
 export async function getCategories() {

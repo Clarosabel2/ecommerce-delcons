@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { GiClothes } from "react-icons/gi";
 import { getCategories } from "../service/StoreApi";
 import Category from "../models/Category";
 import AnimatedLink from "./AnimatedLink";

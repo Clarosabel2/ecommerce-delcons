@@ -9,10 +9,24 @@ export default class Cart {
         this.amount = this.calculateAmount();
     }
 
+    addItem(item: Item): void {
+        this.items.push(item);
+        this.amount = this.calculateAmount();
+    }
+    removeItem(productId: number): void {
+        this.items = this.items.filter((i) => i.product.id != productId);
+        this.amount = this.calculateAmount();
+    }
+
     calculateAmount(): number {
-        return this.items.reduce((total, item) => {
-            return total + item.product.price * item.quantity;
-        }, 0);
+        return this.items.reduce(
+            (total, item) => {
+                const a = total + item.product.price * item.quantity;
+                console.log("Total: " + a);
+                return a;
+            },
+            0
+        );
     }
 }
 
@@ -30,7 +44,7 @@ export class Item {
     }
 
     calculateSubtotal(): number {
-        console.log("hola")
+        console.log("Subtotal: " + this.product.price * this.quantity);
         return this.product.price * this.quantity;
     }
 }

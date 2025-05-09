@@ -1,53 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
+
 import { CiShoppingCart } from "react-icons/ci";
 import { FaTrash } from "react-icons/fa";
-import Product from "../models/Product";
-import Cart, { Item } from "../models/Cart";
-import Category from "../models/Category";
-import Rating from "../models/Rating";
-
-const mockProducts = [
-    new Product(
-        1,
-        "MacBook Air",
-        123,
-        "",
-        new Category(1, "Electronic"),
-        "https://http2.mlstatic.com/D_NQ_NP_2X_801112-MLA46516512347_062021-T.webp",
-        new Rating(2, 2)
-    ),
-    new Product(
-        2,
-        "Tablet",
-        1230,
-        "",
-        new Category(1, "Electronic"),
-        "https://i.blogs.es/6dbb45/captura-de-pantalla-2024-12-11-a-las-8.41.12/650_1200.png",
-        new Rating(2, 2)
-    ),
-    new Product(
-        3,
-        "IPhone 16 Pro Max",
-        3423,
-        "",
-        new Category(1, "Electronic"),
-        "https://dcdn-us.mitiendanube.com/stores/001/097/819/products/iphone_16_ultramarine_pdp_image_position_1__en-in_6c707cad-991a-4cce-826c-15a71885ee62-81e0147d8e9e16643e17298216142643-640-0.png",
-        new Rating(2, 2)
-    ),
-];
-
-const mockItems = [
-    new Item(1, 2, mockProducts[0]), // 2 Laptops
-    new Item(2, 3, mockProducts[1]), // 3 Smartphones
-    new Item(3, 1, mockProducts[2]), // 1 Tablet
-];
+import { useCart } from "../hooks/userCart";
 
 export default function CartComponent() {
     const [isHovered, setIsHovered] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    const [cart] = useState(new Cart(mockItems));
+    const { cart, addItem, removeItem } = useCart();
 
     const handleMouseEnter = () => {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -60,7 +23,7 @@ export default function CartComponent() {
             setIsHovered(false);
             timeoutRef.current = setTimeout(() => {
                 setIsVisible(false);
-            }, 300);
+            }, 400);
         }, 100);
     };
 
@@ -79,7 +42,7 @@ export default function CartComponent() {
 
             {isVisible && (
                 <div
-                    className={`absolute right-0 z-50 flex flex-col h-auto gap-2 p-2 mt-2 transition-all duration-300 bg-white shadow-2xl cursor-default w-80 top-full rounded-xl 
+                    className={`absolute right-0 z-50 flex flex-col h-auto gap-2 p-2 mt-2 transition-all duration-300 bg-white shadow-2xl cursor-default w-80 top-full rounded-xl border-1 border-gray-300 
                     ${isHovered ? "animate-fade-in" : "animate-fade-out"}`}
                 >
                     <div className="w-full">
@@ -87,7 +50,7 @@ export default function CartComponent() {
                             Tu carrito
                         </p>
                     </div>
-                    <div className="space-y-2 text-sm text-gray-600">
+                    <div className="space-y-2 overflow-auto text-sm text-gray-600 max-h-72">
                         {cart.items.length === 0 ? (
                             <p className="text-center">
                                 No hay productos en el carrito.
@@ -96,7 +59,7 @@ export default function CartComponent() {
                             cart.items.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="flex items-center justify-around border-gray-300 border-t-1"
+                                    className="flex items-center justify-around px-4 py-1 border-gray-300 border-t-1"
                                 >
                                     <section>
                                         <img
@@ -114,7 +77,8 @@ export default function CartComponent() {
                                             <p>Subtotal: ${item.subtotal}</p>
                                         </div>
                                     </section>
-                                    <button className="p-2 text-red-500 border cursor-pointer rounded-xl hover:text-red-700 hover:bg-gray-100">
+                                    <button className="p-2 text-red-500 border cursor-pointer rounded-xl hover:text-red-700 hover:bg-gray-100"
+                                        onClick={()=>removeItem(item.product.id)}>
                                         <FaTrash />
                                     </button>
                                 </div>
@@ -124,7 +88,7 @@ export default function CartComponent() {
                     <div className="flex items-center justify-between w-full px-4 py-2 text-black bg-gray-200 rounded-md shadow">
                         <span className="font-semibold">Total:</span>
                         <span className="text-lg font-semibold">
-                            $ {cart.amount}
+                             $ {cart.amount.toFixed(2)}
                         </span>
                     </div>
                 </div>
