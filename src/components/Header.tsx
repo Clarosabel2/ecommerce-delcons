@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Logo from "./Logo";
 import AnimatedLink from "./AnimatedLink";
-import Cart from "./CartComponent";
+import Cart from "./Cart/CartComponent";
 
 export default function Header() {
     const navegate = useNavigate();
@@ -20,7 +20,7 @@ export default function Header() {
                 </div>
                 <div>
                     <ul className="flex items-center justify-center gap-2">
-                        <li>
+                        <li className="hidden sm:block">
                             <AnimatedLink>
                                 <Cart/>
                             </AnimatedLink>

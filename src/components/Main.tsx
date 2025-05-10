@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { getAllProducts } from "../service/StoreApi";
 import FilterPanel from "./FilterPanel";
+import { OrbitProgress } from "react-loading-indicators";
+import CartPhone from "./Cart/CartPhone";
 
 export default function Main() {
     const [products, setProducts] = useState([]);
@@ -14,6 +16,7 @@ export default function Main() {
                 setLoading(true);
                 setProducts(await getAllProducts());
             } catch (error) {
+                setLoading(false);
                 console.error("Error cargando productos:", error);
             } finally {
                 setLoading(false);
@@ -26,39 +29,38 @@ export default function Main() {
     return (
         <div className="z-40 h-auto min-h-screen">
             {loading ? (
-                <div>
-                    <h1 className="mt-10 text-2xl font-bold text-center">
-                        Cargando productos...
-                    </h1>
-                    <p className="mt-4 text-center">Por favor espera...</p>
+                <div
+                    className="relative flex items-center justify-center w-full"
+                    style={{ height: "calc(100vh - 64px)" }} // 64px = h-16
+                >
+                    <OrbitProgress
+                        color="#0b172f"
+                        size="medium"
+                        text=""
+                        textColor=""
+                    />
                 </div>
             ) : products.length > 0 ? (
-                <div className="flex flex-col justify-between w-full px-5 lg:flex-row">
-                    <div className="ml-10 w-[20%] hidden sm:block">
-                        <FilterPanel
-                            categorySelect={categorySelect}
-                            setCategorySelect={setCategorySelect}
-                        />
-                    </div>
-                    <div
-                        className="w-full lg:w-[75%] grid  grid-rows-5 lg:gap-5 gap-2
+                <div className="w-full">
+                    <div className="flex flex-col px-5 sm:flex-row">
+                        <div className="ml-10 w-[20%] hidden sm:block">
+                            <FilterPanel
+                                categorySelect={categorySelect}
+                                setCategorySelect={setCategorySelect}
+                            />
+                        </div>
+                        <div
+                            className="w-full lg:w-[75%] grid  grid-rows-5 lg:gap-5 gap-2
                             md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
-                    >
-                        {products.map(
-                            (p) => (console.log(p), (<Card product={p} />))
-                        )}
+                        >
+                            {products.map(
+                                (p) => (console.log(p), (<Card product={p} />))
+                            )}
+                        </div>
                     </div>
+                    <CartPhone />
                 </div>
-            ) : (
-                <div>
-                    <h1 className="mt-10 text-2xl font-bold text-center">
-                        No hay productos
-                    </h1>
-                    <p className="mt-4 text-center">
-                        Intenta con otra categoría
-                    </p>
-                </div>
-            )}
+            ) : null}
         </div>
     );
 }

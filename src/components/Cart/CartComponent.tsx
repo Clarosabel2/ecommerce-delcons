@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { CiShoppingCart } from "react-icons/ci";
 import { FaTrash } from "react-icons/fa";
-import { useCart } from "../hooks/userCart";
+import { useCart } from "../../hooks/userCart";
 
 export default function CartComponent() {
     const [isHovered, setIsHovered] = useState(false);
@@ -10,7 +10,7 @@ export default function CartComponent() {
     
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    const { cart, addItem, removeItem } = useCart();
+    const { cart, addItem, removeItem, isAddItem } = useCart();
 
     const handleMouseEnter = () => {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -23,13 +23,13 @@ export default function CartComponent() {
             setIsHovered(false);
             timeoutRef.current = setTimeout(() => {
                 setIsVisible(false);
-            }, 400);
+            }, 200);
         }, 100);
     };
 
     return (
         <div
-            className="relative flex"
+            className={`relative flex ${isAddItem? 'wobble-horizontal-bottom':''}`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -59,7 +59,7 @@ export default function CartComponent() {
                             cart.items.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="flex items-center justify-around px-4 py-1 border-gray-300 border-t-1"
+                                    className="flex items-center justify-around gap-2 px-4 py-1 border-gray-300 border-t-1"
                                 >
                                     <section>
                                         <img
@@ -69,7 +69,7 @@ export default function CartComponent() {
                                         />
                                     </section>
                                     <section className="flex flex-col w-full">
-                                        <p>
+                                        <p className="line-clamp-1">
                                             <strong>{item.product.name}</strong>
                                         </p>
                                         <div className="ml-2 text-xs">

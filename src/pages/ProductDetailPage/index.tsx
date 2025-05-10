@@ -12,6 +12,9 @@ import Button from "../../components/Button";
 import RatingStar from "../../components/RatingStar";
 import { useCart } from "../../hooks/userCart";
 import { Item } from "../../models/Cart";
+import { OrbitProgress } from "react-loading-indicators";
+import QuantitySelector from "../../components/QuantitySelector";
+import CartPhone from "../../components/Cart/CartPhone";
 
 export default function index() {
     const { id } = useParams();
@@ -20,11 +23,12 @@ export default function index() {
     }
 
     const { cart, addItem, removeItem } = useCart();
-
+    const [quantity, setQuantity] = useState<number>(1);
     const [product, setProduct] = useState<Product>();
     const [loading, setLoading] = useState(true);
 
     const rating: Rating = product?.rating ?? { rate: 0, count: 0 };
+
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -45,8 +49,16 @@ export default function index() {
             <ScrollToTop />
             <Header></Header>
             {loading && (
-                <div className="flex items-center justify-center w-full h-screen">
-                    <h1 className="text-2xl">Cargando...</h1>
+                <div
+                    className="relative flex items-center justify-center w-full"
+                    style={{ height: "calc(100vh - 64px)" }} // 64px = h-16
+                >
+                    <OrbitProgress
+                        color="#0b172f"
+                        size="medium"
+                        text=""
+                        textColor=""
+                    />
                 </div>
             )}
             {!loading && !product && (
@@ -55,8 +67,8 @@ export default function index() {
                 </div>
             )}
             {!loading && product && (
-                <section className="flex flex-row w-full h-screen">
-                    <div className="flex justify-center w-1/2">
+                <section className="flex flex-col w-full sm:flex-row sm:h-screen">
+                    <div className="flex justify-center sm:w-1/2">
                         <div className="flex items-center justify-center w-4/6 h-4/5">
                             <img
                                 src={product?.image}
@@ -65,7 +77,7 @@ export default function index() {
                             />
                         </div>
                     </div>
-                    <div className="w-1/2">
+                    <div className="flex flex-col px-4 sm:w-1/2">
                         <h1 className="text-4xl font-extrabold text-gray-900">
                             {product?.name}
                         </h1>
@@ -96,15 +108,24 @@ export default function index() {
                         <p className="mt-6 mr-10 text-base leading-relaxed text-gray-700">
                             {product?.description}
                         </p>
-
-                        <Button
-                            className={"p-2 flex flex-row"}
-                            onClick={() => addItem(new Item(1, 1, product))}
-                        >
-                            <FaCartPlus />
-                            Agregar al Carrito
-                        </Button>
+                        <br />
+                        <div className="flex self-center gap-2">
+                            <QuantitySelector
+                                value={quantity}
+                                onChange={setQuantity}
+                            />
+                            <Button
+                                className={"p-2 flex flex-row "}
+                                onClick={() =>
+                                    addItem(new Item(1, quantity, product))
+                                }
+                            >
+                                <FaCartPlus />
+                                Agregar al Carrito
+                            </Button>
+                        </div>
                     </div>
+                    <CartPhone />
                 </section>
             )}
             <Footer></Footer>
