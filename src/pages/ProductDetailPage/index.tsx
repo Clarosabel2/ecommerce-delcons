@@ -29,7 +29,6 @@ export default function index() {
 
     const rating: Rating = product?.rating ?? { rate: 0, count: 0 };
 
-
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -117,11 +116,13 @@ export default function index() {
                             <Button
                                 className={"p-2 flex flex-row "}
                                 onClick={() =>
-                                    addItem(new Item(1, quantity, product))
+                                    addItem(new Item(quantity, product))
                                 }
                             >
                                 <FaCartPlus />
-                                Agregar al Carrito
+                                <span className="hidden sm:block">
+                                    Agregar al Carrito
+                                </span>
                             </Button>
                         </div>
                     </div>

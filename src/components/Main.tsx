@@ -58,7 +58,9 @@ export default function Main() {
                             )}
                         </div>
                     </div>
-                    <CartPhone />
+                    
+                        <CartPhone />
+                    
                 </div>
             ) : null}
         </div>

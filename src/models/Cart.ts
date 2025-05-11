@@ -36,8 +36,7 @@ export class Item {
     product: Product;
     subtotal: number;
 
-    constructor(id, quantity, product) {
-        this.id = id;
+    constructor(quantity, product) {
         this.quantity = quantity;
         this.product = product;
         this.subtotal = this.calculateSubtotal();

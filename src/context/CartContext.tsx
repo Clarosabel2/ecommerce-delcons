@@ -39,9 +39,10 @@ export default function CartProvider({
     const addItem = (item: Item) => {
         setFlag(true);
         const newCart = new Cart([...cart.items]);
+        item.id = newCart.items.length + 1;
         newCart.addItem(item);
         setCart(newCart);
-        
+
         timeoutRef.current = setTimeout(() => {
             setFlag(false);
         }, 900);

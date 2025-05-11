@@ -15,7 +15,8 @@ export default function CartItem({ item }: CartItemProps) {
             key={item.id}
             className="flex items-center justify-around gap-2 px-4 py-1 border-gray-300 border-t-1"
         >
-            <section>
+            <p>{item.id}</p>
+            <section className="">
                 <img
                     src={item.product.image}
                     alt={item.product.name}
