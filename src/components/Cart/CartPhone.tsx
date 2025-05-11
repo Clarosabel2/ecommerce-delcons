@@ -29,18 +29,29 @@ export default function CartPhone() {
                         <p>Total: $ {cart.amount.toFixed(2)}</p>
                     </div>
                 </header>
-
-                <section
-                    className={`flex flex-col px-4 py-2 transition-all duration-500 ${
-                        expanded
-                            ? "h-[60vh] overflow-y-auto pb-24"
-                            : "h-[10vh] overflow-hidden pb-0"
-                    }`}
-                >
-                    {cart.items.map((item) => (
-                        <CartItem key={item.id} item={item} />
-                    ))}
-                </section>
+                {cart.items.length > 0 ? (
+                    <section
+                        className={`flex flex-col px-4 py-3 transition-all duration-500 ${
+                            expanded
+                                ? "h-[60vh] overflow-y-auto pb-24"
+                                : "h-[10vh] overflow-hidden pb-0"
+                        }`}
+                    >
+                        {cart.items.map((item) => (
+                            <CartItem key={item.id} item={item} />
+                        ))}
+                    </section>
+                ) : (
+                    <section
+                        className={`w-full pb-0 px-4 py-2 transition-all duration-500 overflow-hidden ${
+                            expanded ? "h-[15vh] overflow-y-auto" : "h-[10vh]"
+                        }`}
+                    >
+                        <p className="text-xl font-light text-center">
+                            No hay productos en el carrito.
+                        </p>
+                    </section>
+                )}
             </div>
         </div>
     );
