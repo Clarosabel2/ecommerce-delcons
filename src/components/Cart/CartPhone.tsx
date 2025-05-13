@@ -6,33 +6,16 @@ import NumberFlow from "@number-flow/react";
 import clsx from "clsx";
 
 export default function CartPhone() {
-    const { cart, isAddItem, hasItems } = useCart();
+    const { cart, isAddItem} = useCart();
     const [expanded, setExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const toggleCart = () => setExpanded((prev) => !prev);
-
-    useEffect(() => {
-        if (hasItems) {
-            setIsVisible(true);
-        } else {
-            const timer = setTimeout(() => {
-                setExpanded(false);
-            }, 200);
-            return () => clearTimeout(timer);
-        }
-    }, [hasItems]);
 
     return (
         <div className="pt-28 sm:pt-0">
             <div
                 className={clsx(
-                    "fixed w-full bg-white shadow-lg rounded-t-4xl cart-phone sm:hidden -bottom-20 z-50",
-                    {
-                        block: isVisible,
-                        hidden: !isVisible,
-                        "animate-slide-out-top": hasItems,
-                        "animate-slide-out-bottom": !hasItems,
-                    }
+                    "fixed w-full bg-white shadow-lg rounded-t-4xl cart-phone sm:hidden -bottom-20 z-50"
                 )}
             >
                 <header
@@ -62,13 +45,24 @@ export default function CartPhone() {
                 </header>
                 <section
                     className={`flex flex-col px-4 py-3 transition-all duration-500 ${
-                        expanded ? "h-[60vh]" : "h-[8vh]"
+                        expanded ? "h-[60vh]" : "h-[10vh]"
                     } overflow-hidden`}
                 >
-                    <div className={`flex flex-col gap-2 ${expanded ? "overflow-y-auto pb-24" : ""}`}>
-                        {cart.items.map((item) => (
-                            <CartItem key={item.id} item={item} />
-                        ))}
+                    <div
+                        className={`flex flex-col gap-2 ${
+                            expanded ? "overflow-y-auto pb-24" : ""
+                        }`}
+                    >
+                        {cart.items.length !== 0 ? (
+                            cart.items.map((item) => (
+                                <CartItem key={item.id} item={item} />
+                            ))
+                        ) : (
+                            <div className="flex flex-col items-center justify-center h-full py-8 text-gray-500">
+                                <p className="text-lg font-light">Tu carrito está vacío</p>
+                                <p className="text-sm font-light">Agrega algunos productos para comenzar</p>
+                            </div>
+                        )}
                     </div>
                 </section>
             </div>
