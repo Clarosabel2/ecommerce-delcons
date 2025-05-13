@@ -16,23 +16,22 @@ export default function CartPhone() {
             setIsVisible(true);
         } else {
             const timer = setTimeout(() => {
-                setIsVisible(false);
                 setExpanded(false);
-            }, 200); 
+            }, 200);
             return () => clearTimeout(timer);
         }
     }, [hasItems]);
 
     return (
-        <div className={`pt-28 sm:pt-0`}>
+        <div className="pt-28 sm:pt-0">
             <div
                 className={clsx(
-                    "fixed w-full bg-white shadow-lg rounded-t-4xl cart-phone sm:hidden -bottom-20",
+                    "fixed w-full bg-white shadow-lg rounded-t-4xl cart-phone sm:hidden -bottom-20 z-50",
                     {
                         block: isVisible,
                         hidden: !isVisible,
-                        "scale-up-vertical-top": hasItems,
-                        "scale-down-vertical-bottom": !hasItems,
+                        "animate-slide-out-top": hasItems,
+                        "animate-slide-out-bottom": !hasItems,
                     }
                 )}
             >
@@ -40,7 +39,7 @@ export default function CartPhone() {
                     className="flex items-center justify-between gap-3 px-10 py-2 pl-3"
                     onClick={toggleCart}
                 >
-                    <div className="flex items-baseline justify-center gap-3">
+                    <div className="flex items-center justify-center gap-3">
                         <div className="self-start p-2 bg-gray-300 rounded-full">
                             <SlArrowUp
                                 className={`text-2xl transition-transform duration-300 ${
@@ -63,14 +62,14 @@ export default function CartPhone() {
                 </header>
                 <section
                     className={`flex flex-col px-4 py-3 transition-all duration-500 ${
-                        expanded
-                            ? "max-h-[60vh] overflow-y-auto pb-24"
-                            : "max-h-[10vh] overflow-hidden pb-0"
-                    }`}
+                        expanded ? "h-[60vh]" : "h-[8vh]"
+                    } overflow-hidden`}
                 >
-                    {cart.items.map((item) => (
-                        <CartItem key={item.id} item={item} />
-                    ))}
+                    <div className={`flex flex-col gap-2 ${expanded ? "overflow-y-auto pb-24" : ""}`}>
+                        {cart.items.map((item) => (
+                            <CartItem key={item.id} item={item} />
+                        ))}
+                    </div>
                 </section>
             </div>
         </div>

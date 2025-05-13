@@ -4,6 +4,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { FaTrash } from "react-icons/fa";
 import { useCart } from "../../hooks/userCart";
 import CartItem from "./CartItem";
+import NumberFlow from "@number-flow/react";
 
 export default function CartComponent() {
     const [isHovered, setIsHovered] = useState(false);
@@ -31,7 +32,7 @@ export default function CartComponent() {
     return (
         <div
             className={`relative flex ${
-                isAddItem ? "wobble-horizontal-bottom" : ""
+                isAddItem ? "animate-vertical-bounce" : ""
             }`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -39,7 +40,7 @@ export default function CartComponent() {
             <div className="relative flex">
                 <CiShoppingCart className="mr-1 text-4xl" />
                 <div className="absolute flex items-center justify-center w-full h-full">
-                    {cart.items.length}
+                    <NumberFlow value={cart.items.length}/>
                 </div>
             </div>
 
@@ -67,7 +68,7 @@ export default function CartComponent() {
                     <div className="flex items-center justify-between w-full px-4 py-2 text-black bg-gray-200 rounded-md shadow">
                         <span className="font-semibold">Total:</span>
                         <span className="text-lg font-semibold">
-                            $ {cart.amount.toFixed(2)}
+                            $<NumberFlow value={cart.amount}/>
                         </span>
                     </div>
                 </div>

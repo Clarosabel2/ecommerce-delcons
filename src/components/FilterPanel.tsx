@@ -20,7 +20,7 @@ export default function FilterPanel({
         <div className="relative">
             {/* Botón móvil para mostrar filtros */}
             <button
-                className="fixed z-50 flex items-center justify-center p-4 text-white transition-colors rounded-full shadow-lg bottom-4 right-4 lg:hidden bg-slate-800 hover:bg-slate-700"
+                className="fixed z-30 flex items-center justify-center p-4 text-white transition-colors rounded-full shadow-lg bottom-20 right-4 lg:hidden bg-slate-800 hover:bg-slate-700"
                 onClick={() => setShowMobile(!showMobile)}
             >
                 <FaFilter className="w-5 h-5" />

@@ -13,7 +13,7 @@ export default function CartItem({ item }: CartItemProps) {
     return (
         <div
             key={item.id}
-            className="flex items-center justify-around gap-2 px-4 py-1 border-gray-300 border-t-1"
+            className="flex items-center justify-around gap-2 px-4 pt-1 border-gray-300 border-t-1"
         >
             <p className="text-xs font-extralight ">{item.id}</p>
             <section className="">
