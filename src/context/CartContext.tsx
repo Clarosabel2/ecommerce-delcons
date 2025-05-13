@@ -6,6 +6,7 @@ import React, {
     ReactNode,
     JSX,
     useRef,
+    useEffect,
 } from "react";
 
 import Cart, { Item } from "../models/Cart";
@@ -14,6 +15,7 @@ import Product from "../models/Product";
 interface CartContextProps {
     cart: Cart;
     isAddItem: boolean;
+    hasItems: boolean;
     addItem: (item: Item) => void;
     removeItem: (itemId: number) => void;
     clearCart: () => void;
@@ -35,6 +37,8 @@ export default function CartProvider({
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const [isAddItem, setFlag] = useState(false);
+
+    const [hasItems, setHasItems] = useState(false);
 
     const addItem = (item: Item) => {
         setFlag(true);
@@ -58,9 +62,13 @@ export default function CartProvider({
         setCart(new Cart([]));
     };
 
+    useEffect(() => {
+        setHasItems(cart.items.length > 0);
+      }, [cart.items]);
+
     return (
         <CartContext.Provider
-            value={{ cart, addItem, removeItem, clearCart, isAddItem }}
+            value={{ cart, addItem, removeItem, clearCart, isAddItem , hasItems}}
         >
             {children}
         </CartContext.Provider>

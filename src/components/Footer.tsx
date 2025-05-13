@@ -5,7 +5,7 @@ import SocialItem from "./SocialItem";
 
 export default function Footer() {
     return (
-        <footer className="bg-gradient-to-b to-10% from-white to-[#0b172f] text-gray-200 py-10 mt-10 hidden sm:block">
+        <footer className="bg-gradient-to-b to-10% from-white to-[#0b172f] text-gray-200 py-10 mt-10 hidden lg:block">
             <div className="grid max-w-6xl grid-cols-1 gap-8 px-4 mx-auto sm:grid-cols-2 md:grid-cols-4">
                 <div>
                     <h2 className="mb-4 text-xl font-semibold">

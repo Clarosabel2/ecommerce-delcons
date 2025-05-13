@@ -50,10 +50,10 @@ export default function index() {
             {loading && (
                 <div
                     className="relative flex items-center justify-center w-full"
-                    style={{ height: "calc(100vh - 64px)" }} // 64px = h-16
+                    style={{ height: "calc(100vh - 64px)" }}
                 >
                     <OrbitProgress
-                        color="#0b172f"
+                        color="#2896b9"
                         size="medium"
                         text=""
                         textColor=""
@@ -96,17 +96,24 @@ export default function index() {
                             </a>
                         </article>
 
-                        {/* Costo de envío ficticio */}
                         <p className="mt-1 text-sm text-gray-500">
                             Envío:{" "}
                             <span className="font-medium text-green-600">
                                 Gratis
                             </span>
                         </p>
-
-                        <p className="mt-6 mr-10 text-base leading-relaxed text-gray-700">
-                            {product?.description}
-                        </p>
+                        <div className="mt-6 mr-10 text-xl font-light">
+                            <label htmlFor="description" className="block mb-1">
+                                Descripción
+                            </label>
+                            <p
+                                id="description"
+                                className="ml-3 text-base leading-relaxed text-gray-700"
+                            >
+                                {product?.description ||
+                                    "Sin descripción disponible."}
+                            </p>
+                        </div>
                         <br />
                         <div className="flex self-center gap-2">
                             <QuantitySelector

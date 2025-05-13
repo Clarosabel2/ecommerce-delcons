@@ -34,7 +34,7 @@ export default function Main() {
                     style={{ height: "calc(100vh - 64px)" }} // 64px = h-16
                 >
                     <OrbitProgress
-                        color="#0b172f"
+                        color="#2896b9"
                         size="medium"
                         text=""
                         textColor=""
@@ -42,13 +42,13 @@ export default function Main() {
                 </div>
             ) : products.length > 0 ? (
                 <div className="w-full">
-                    <div className="flex flex-col px-5 sm:flex-row">
-                        <div className="ml-10 w-[20%] hidden sm:block">
-                            <FilterPanel
-                                categorySelect={categorySelect}
-                                setCategorySelect={setCategorySelect}
-                            />
-                        </div>
+                    <div className="flex flex-col justify-between px-5 sm:flex-row">
+
+                        <FilterPanel
+                            categorySelect={categorySelect}
+                            setCategorySelect={setCategorySelect}
+                        />
+
                         <div
                             className="w-full lg:w-[75%] grid  grid-rows-5 lg:gap-5 gap-2
                             md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
@@ -58,9 +58,8 @@ export default function Main() {
                             )}
                         </div>
                     </div>
-                    
-                        <CartPhone />
-                    
+
+                    <CartPhone />
                 </div>
             ) : null}
         </div>

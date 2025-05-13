@@ -27,7 +27,8 @@ export default function CategoryProduct() {
     return (
         <ul className="space-y-1">
             {categories.map((c) => (
-                <li key={c.id} className="flex items-center gap-2">
+                <li key={c.id} className="flex items-center gap-1">
+                    <input type="checkbox" name="" id="" />
                     <AnimatedLink>{c.name}</AnimatedLink>
                 </li>
             ))}

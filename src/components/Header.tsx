@@ -27,7 +27,7 @@ export default function Header() {
                         </li>
                         <li>
                             <AnimatedLink href="/auth">
-                                Sign Up / Log In
+                                Sign In
                             </AnimatedLink>
                         </li>
                     </ul>
