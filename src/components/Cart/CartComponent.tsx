@@ -68,7 +68,8 @@ export default function CartComponent() {
                     <div className="flex items-center justify-between w-full px-4 py-2 text-black bg-gray-200 rounded-md shadow">
                         <span className="font-semibold">Total:</span>
                         <span className="text-lg font-semibold">
-                            $<NumberFlow value={cart.amount}/>
+                            $<NumberFlow value={Number(cart.amount.toFixed(2))}/>
+                            
                         </span>
                     </div>
                 </div>

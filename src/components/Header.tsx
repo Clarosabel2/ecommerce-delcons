@@ -20,7 +20,7 @@ export default function Header() {
                 </div>
                 <div>
                     <ul className="flex items-center justify-center gap-2">
-                        <li className="hidden sm:block">
+                        <li className="hidden lg:block">
                             <AnimatedLink>
                                 <Cart/>
                             </AnimatedLink>

@@ -6,16 +6,16 @@ import NumberFlow from "@number-flow/react";
 import clsx from "clsx";
 
 export default function CartPhone() {
-    const { cart, isAddItem} = useCart();
+    const { cart, isAddItem } = useCart();
     const [expanded, setExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const toggleCart = () => setExpanded((prev) => !prev);
 
     return (
-        <div className="pt-28 sm:pt-0">
+        <div className="pt-28 lg:pt-0">
             <div
                 className={clsx(
-                    "fixed w-full bg-white shadow-lg rounded-t-4xl cart-phone sm:hidden -bottom-20 z-50"
+                    "fixed w-full bg-white shadow-lg rounded-t-4xl cart-phone lg:hidden -bottom-20 z-50"
                 )}
             >
                 <header
@@ -39,7 +39,10 @@ export default function CartPhone() {
                             Items: <NumberFlow value={cart.items.length} />
                         </p>
                         <p>
-                            Total: $<NumberFlow value={cart.amount} />
+                            Total: $
+                            <NumberFlow
+                                value={Number(cart.amount.toFixed(2))}
+                            />
                         </p>
                     </div>
                 </header>
@@ -59,8 +62,12 @@ export default function CartPhone() {
                             ))
                         ) : (
                             <div className="flex flex-col items-center justify-center h-full py-8 text-gray-500">
-                                <p className="text-lg font-light">Tu carrito está vacío</p>
-                                <p className="text-sm font-light">Agrega algunos productos para comenzar</p>
+                                <p className="text-lg font-light">
+                                    Tu carrito está vacío
+                                </p>
+                                <p className="text-sm font-light">
+                                    Agrega algunos productos para comenzar
+                                </p>
                             </div>
                         )}
                     </div>

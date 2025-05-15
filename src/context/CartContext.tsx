@@ -42,10 +42,21 @@ export default function CartProvider({
 
     const addItem = (item: Item) => {
         setFlag(true);
-        const newCart = new Cart([...cart.items]);
-        item.id = newCart.items.length + 1;
-        newCart.addItem(item);
-        setCart(newCart);
+
+        const existingItem = cart.items.find(
+            (i) => i.product.id === item.product.id
+        );
+
+        if (existingItem) {
+            existingItem.quantity = item.quantity;
+            existingItem.subtotal = existingItem.calculateSubtotal();
+            cart.amount = cart.calculateAmount();
+        } else {
+            const newCart = new Cart([...cart.items]);
+            item.id = newCart.items.length + 1;
+            newCart.addItem(item);
+            setCart(newCart);
+        }
 
         timeoutRef.current = setTimeout(() => {
             setFlag(false);
@@ -64,11 +75,18 @@ export default function CartProvider({
 
     useEffect(() => {
         setHasItems(cart.items.length > 0);
-      }, [cart.items]);
+    }, [cart.items]);
 
     return (
         <CartContext.Provider
-            value={{ cart, addItem, removeItem, clearCart, isAddItem , hasItems}}
+            value={{
+                cart,
+                addItem,
+                removeItem,
+                clearCart,
+                isAddItem,
+                hasItems,
+            }}
         >
             {children}
         </CartContext.Provider>

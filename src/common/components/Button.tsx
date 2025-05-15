@@ -4,7 +4,7 @@ type Props = {
     children: React.ReactNode;
     onClick?: () => void;
     type?: "button" | "submit" | "reset";
-    className?: String;
+    className?: string;
 };
 
 export default function Button({
@@ -17,9 +17,9 @@ export default function Button({
         <button
             type={type}
             onClick={onClick}
-            className={`${className} py-3 flex gap-2 items-center cursor-pointer bg-blue-600 hover:bg-blue-700 active:bg-blue-500 text-white text-lg font-semibold w-auto px-5 rounded-lg transition-colors `}
+            className={`${className}flex gap-2 items-center cursor-pointer bg-blue-600 hover:bg-blue-700 active:bg-blue-500 text-white text-lg font-semibold w-auto px-5 rounded-lg transition-colors `}
         >
             {children}
         </button>
     );
-}
+} 

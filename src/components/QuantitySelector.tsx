@@ -1,22 +1,65 @@
+import NumberFlow from "@number-flow/react";
 import React from "react";
+import { FaMinus, FaPlus } from "react-icons/fa";
 
-export default function QuantitySelector({ value, onChange }) {
+interface QuantitySelectorProps {
+    value: number;
+    onChange: (value: number) => void;
+    min?: number;
+    max?: number;
+}
+
+export default function QuantitySelector({ 
+    value, 
+    onChange,
+    min = 1,
+    max = 10
+}: QuantitySelectorProps) {
+    const handleIncrement = () => {
+        if (value < max) {
+            console.log(value);
+            onChange(value + 1);
+            console.log(value);
+        }
+    };
+
+    const handleDecrement = () => {
+        if (value > min) {
+            onChange(value - 1);
+        }
+    };
+
     return (
-        <div className="flex items-center justify-center gap-2 px-2 text-lg font-semibold ">
-            <label htmlFor="slt-cant">Cantidad: </label>
-            <select
-                id="slt-cant"
-                value={value}
-                onChange={(e) => onChange(Number(e.target.value))}
-                className="font-normal border border-blue-600 rounded-lg p-0.5 bg-blue-600 text-white py-2"
+        <div className="flex items-center gap-2">
+            <button
+                onClick={handleDecrement}
+                disabled={value <= min}
+                className={`flex items-center justify-center w-8 h-8 text-sm border rounded-full
+                    ${value <= min 
+                        ? 'text-gray-400 border-gray-300 cursor-not-allowed' 
+                        : 'text-blue-600 border-blue-600 hover:bg-blue-50 active:bg-blue-100'
+                    }`}
+                aria-label="Disminuir cantidad"
             >
-                <option value={1}>1 unidad</option>
-                <option value={2}>2 unidades</option>
-                <option value={3}>3 unidades</option>
-                <option value={4}>4 unidades</option>
-                <option value={5}>5 unidades</option>
-                <option value={6}>Más de 5 unidades</option>
-            </select>
+                <FaMinus className="w-3 h-3" />
+            </button>
+
+            <span className="w-8 font-medium text-center">
+                <NumberFlow value={value} />
+            </span>
+
+            <button
+                onClick={handleIncrement}
+                disabled={value >= max}
+                className={`flex items-center justify-center w-8 h-8 text-sm border rounded-full
+                    ${value >= max 
+                        ? 'text-gray-400 border-gray-300 cursor-not-allowed' 
+                        : 'text-blue-600 border-blue-600 hover:bg-blue-50 active:bg-blue-100'
+                    }`}
+                aria-label="Aumentar cantidad"
+            >
+                <FaPlus className="w-3 h-3" />
+            </button>
         </div>
     );
 }

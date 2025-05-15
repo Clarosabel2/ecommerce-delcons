@@ -3,7 +3,7 @@ import Product from "../models/Product";
 import Rating from "../models/Rating";
 import capitalize from "../utils/stringUtils";
 
-const API_URL = "https://fakestoreapi.com/products/";
+const API_URL = "https://dummyjson.com/products";
 
 // Se obtiene la lista de productos de la API
 export const getAllProducts = async () => {
@@ -15,12 +15,12 @@ export const getAllProducts = async () => {
     const data = await res.json();
 
     let products = [];
-    products = data.map((p: any) => instanceProduct(p));
+    products = data.products.map((p: any) => instanceProduct(p));
     return products;
 };
 // Se obtiene un producto por su id
 export const getProductById = async (id: string): Promise<Product> => {
-    const res = await fetch(`${API_URL}${id}`);
+    const res = await fetch(`${API_URL}/${id}`);
     if (!res.ok) {
         throw new Error("Error al obtener el producto");
     }
@@ -70,8 +70,29 @@ function instanceProduct(obj: any): Product {
         obj.title,
         obj.price,
         obj.description,
-        new Category(1, obj.category),
-        obj.image,
-        new Rating(obj.rating.rate, obj.rating.count)
+        new Category(obj.id, obj.category),
+        obj.images?.[0] || obj.image || obj.thumbnail,
+        new Rating(obj.rating || 0, obj.stock || 0),
+        obj.brand,
+        obj.sku,
+        obj.discountPercentage,
+        obj.stock,
+        obj.tags,
+        obj.weight,
+        obj.dimensions,
+        obj.warrantyInformation,
+        obj.shippingInformation,
+        obj.availabilityStatus,
+        obj.returnPolicy,
+        obj.minimumOrderQuantity,
+        obj.reviews,
+        {
+            createdAt: obj.meta?.createdAt,
+            updatedAt: obj.meta?.updatedAt,
+            barcode: obj.meta?.barcode,
+            qrCode: obj.meta?.qrCode
+        },
+        obj.images,
+        obj.thumbnail
     );
 }

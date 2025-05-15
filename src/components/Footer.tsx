@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { ImInstagram } from "react-icons/im";
 import SocialItem from "./SocialItem";
+import AnimatedLink from "./AnimatedLink";
 
 export default function Footer() {
     return (
@@ -71,7 +72,7 @@ export default function Footer() {
 
                 <div>
                     <h2 className="mb-4 text-xl font-semibold">Síguenos</h2>
-                    <div className="flex space-x-4">
+                    <div className="flex space-y-2 xl:gap-2 lg:flex-col xl:flex-row xl:space-y-0">
                         <SocialItem>
                             <FaFacebookF /> Facebook
                         </SocialItem>
