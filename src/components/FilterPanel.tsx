@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import Category from "../models/Category";
-import { getCategories } from "../service/StoreApi";
+import { getCategories } from "../services/StoreApi";
 import AnimatedLink from "./AnimatedLink";
 import ListItem from "./ListItem";
 import { Item } from "../models/Cart";

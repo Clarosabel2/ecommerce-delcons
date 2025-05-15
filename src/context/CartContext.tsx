@@ -1,5 +1,4 @@
 import React, {
-    Children,
     createContext,
     useContext,
     useState,
@@ -10,7 +9,7 @@ import React, {
 } from "react";
 
 import Cart, { Item } from "../models/Cart";
-import Product from "../models/Product";
+import { StorageService } from "../services/storage.service";
 
 interface CartContextProps {
     cart: Cart;
@@ -32,13 +31,20 @@ export const CartContext = createContext<CartContextProps | undefined>(
 export default function CartProvider({
     children,
 }: CartProviderProps): JSX.Element {
-    const [cart, setCart] = useState(new Cart([]));
+    // Inicializar el carrito desde el servicio de almacenamiento
+    const [cart, setCart] = useState(() => {
+        return StorageService.loadCart() || new Cart([]);
+    });
 
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
     const [isAddItem, setFlag] = useState(false);
-
     const [hasItems, setHasItems] = useState(false);
+
+    // Guardar en storage cada vez que el carrito cambie
+    useEffect(() => {
+        StorageService.saveCart(cart);
+        setHasItems(cart.items.length > 0);
+    }, [cart]);
 
     const addItem = (item: Item) => {
         setFlag(true);
@@ -78,11 +84,8 @@ export default function CartProvider({
 
     const clearCart = () => {
         setCart(new Cart([]));
+        StorageService.clearCart();
     };
-
-    useEffect(() => {
-        setHasItems(cart.items.length > 0);
-    }, [cart.items]);
 
     return (
         <CartContext.Provider

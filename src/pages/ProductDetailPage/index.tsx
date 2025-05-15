@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../../models/Product";
-import { getProductById } from "../../service/StoreApi";
+import { getProductById } from "../../services/StoreApi";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/common/ScrollToTop";

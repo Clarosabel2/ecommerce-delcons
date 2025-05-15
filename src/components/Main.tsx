@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import { getAllProducts } from "../service/StoreApi";
+import { getAllProducts } from "../services/StoreApi";
 import FilterPanel from "./FilterPanel";
 import { OrbitProgress } from "react-loading-indicators";
 import CartPhone from "./Cart/CartPhone";
