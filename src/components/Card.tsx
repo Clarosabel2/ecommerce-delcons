@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Product from "../models/Product";
 import { useNavigate } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa";
@@ -12,9 +12,20 @@ type Props = {
 
 export default function Card({ product }: Props) {
     const navigate = useNavigate();
-    const { cart, addItem, isAddItem } = useCart();
+    const { cart, addItem } = useCart();
+    
+    const existingItem = cart.items.find(i => i.product.id === product.id);
+
     const handleClick = () => {
         navigate(`/product/${product.id}`);
+    };
+
+    const handleAddToCart = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        const newQuantity = (existingItem?.quantity || 0) + 1;
+        const updatedItem = new Item(newQuantity, product);
+        updatedItem.id = existingItem?.id || 0;
+        addItem(updatedItem);
     };
 
     return (
@@ -72,19 +83,21 @@ export default function Card({ product }: Props) {
                         <span className="text-lg font-bold text-gray-900">
                             ${product.price}
                         </span>
-                        {product.stock && (
+                        <div className="flex items-center gap-2">
                             <span className="text-xs text-gray-500">
                                 Stock: {product.stock}
                             </span>
-                        )}
+                            {existingItem && (
+                                <span className="text-xs font-medium text-blue-600">
+                                    En carrito: {existingItem.quantity}
+                                </span>
+                            )}
+                        </div>
                     </div>
                     <button
-                        className="p-2 text-white transition-colors bg-blue-600 rounded-full hover:bg-blue-700"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            addItem(new Item(1, product));
-                            // Aquí puedes agregar la lógica para añadir al carrito
-                        }}
+                        className="p-2 text-white transition-colors bg-blue-600 rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                        onClick={handleAddToCart}
+                        disabled={existingItem?.quantity === product.stock}
                     >
                         <FaCartPlus className="w-5 h-5" />
                     </button>

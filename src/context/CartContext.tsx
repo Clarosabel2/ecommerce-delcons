@@ -48,9 +48,16 @@ export default function CartProvider({
         );
 
         if (existingItem) {
-            existingItem.quantity = item.quantity;
-            existingItem.subtotal = existingItem.calculateSubtotal();
-            cart.amount = cart.calculateAmount();
+            const newCart = new Cart([...cart.items]);
+            const newItem = newCart.items.find(
+                (i) => i.product.id === item.product.id
+            );
+            if (newItem) {
+                newItem.quantity = item.quantity;
+                newItem.subtotal = newItem.calculateSubtotal();
+                newCart.amount = newCart.calculateAmount();
+                setCart(newCart);
+            }
         } else {
             const newCart = new Cart([...cart.items]);
             item.id = newCart.items.length + 1;
