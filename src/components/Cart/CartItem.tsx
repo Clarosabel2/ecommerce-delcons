@@ -10,7 +10,7 @@ interface CartItemProps {
 }
 
 export default function CartItem({ item }: CartItemProps) {
-    const { cart, addItem, removeItem } = useCart();
+    const { cart, addItem, removeItem, updateItemQuantity } = useCart();
     return (
         <div
             key={item.id}
@@ -43,7 +43,9 @@ export default function CartItem({ item }: CartItemProps) {
                 {item.quantity !== 1 ? (
                     <QuantitySelector
                         value={item.quantity}
-                        onChange={(value) => addItem(new Item(value, item.product))}
+                        onChange={(newQuantity) =>
+                            updateItemQuantity(item.product.id, newQuantity)
+                        }
                     />
                 ) : (
                     <button

@@ -11,6 +11,7 @@ interface ProductDetailsProps {
     quantity: number;
     onQuantityChange: (quantity: number) => void;
     onAddToCart: (item: Item) => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({
@@ -18,6 +19,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
     quantity,
     onQuantityChange,
     onAddToCart,
+    
+    
 }) => {
     return (
         <div className="container mx-auto overflow-hidden bg-white shadow-lg rounded-xl">
@@ -83,8 +86,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                                 onChange={onQuantityChange}
                             />
                             <Button
-                                
-                                onClick={() => onAddToCart(new Item(quantity, product))}
+                                onClick={() => {
+                                    onAddToCart(new Item(quantity, product));
+                                }}
                             >
                                 <FaCartPlus className="mr-2" />
                                 <span>Agregar al Carrito</span>

@@ -20,14 +20,6 @@ export default function Card({ product }: Props) {
         navigate(`/product/${product.id}`);
     };
 
-    const handleAddToCart = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        const newQuantity = (existingItem?.quantity || 0) + 1;
-        const updatedItem = new Item(newQuantity, product);
-        updatedItem.id = existingItem?.id || 0;
-        addItem(updatedItem);
-    };
-
     return (
         <div
             className="overflow-hidden transition-all duration-300 bg-white shadow-sm cursor-pointer group rounded-2xl hover:shadow-xl"
@@ -96,7 +88,9 @@ export default function Card({ product }: Props) {
                     </div>
                     <button
                         className="p-2 text-white transition-colors bg-blue-600 rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                        onClick={handleAddToCart}
+                        onClick={(e)=>{
+                            e.stopPropagation();
+                            addItem(new Item(1, product))}}
                         disabled={existingItem?.quantity === product.stock}
                     >
                         <FaCartPlus className="w-5 h-5" />

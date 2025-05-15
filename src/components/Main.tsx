@@ -5,11 +5,14 @@ import FilterPanel from "./FilterPanel";
 import { OrbitProgress } from "react-loading-indicators";
 import CartPhone from "./Cart/CartPhone";
 import Pagination from "./Pagination";
+import { useCart } from "../hooks/userCart";
 
 export default function Main() {
     const [products, setProducts] = useState([]);
     const [categorySelect, setCategorySelect] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
+
+    const {clearCart} = useCart();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -44,6 +47,7 @@ export default function Main() {
                     <div className="mb-8">
                         <h1 className="text-3xl font-bold text-gray-900">Nuestra Tienda</h1>
                         <p className="mt-2 text-gray-600">Encuentra los mejores productos al mejor precio</p>
+                        <button type="button" onClick={clearCart} className="bg-red-400">Limpiar Carrito</button>
                     </div>
 
                     <div className="flex flex-col gap-6 lg:flex-row">

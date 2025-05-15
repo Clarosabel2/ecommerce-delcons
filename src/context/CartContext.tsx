@@ -18,6 +18,7 @@ interface CartContextProps {
     addItem: (item: Item) => void;
     removeItem: (itemId: number) => void;
     clearCart: () => void;
+    updateItemQuantity: (productId: number, newQuantity: number) => void;
 }
 
 interface CartProviderProps {
@@ -48,22 +49,9 @@ export default function CartProvider({
 
     const addItem = (item: Item) => {
         setFlag(true);
-
-        const existingItem = cart.items.find(
-            (i) => i.product.id === item.product.id
-        );
-
+        const existingItem = cart.items.find(i => i.product.id === item.product.id);
         if (existingItem) {
-            const newCart = new Cart([...cart.items]);
-            const newItem = newCart.items.find(
-                (i) => i.product.id === item.product.id
-            );
-            if (newItem) {
-                newItem.quantity = item.quantity;
-                newItem.subtotal = newItem.calculateSubtotal();
-                newCart.amount = newCart.calculateAmount();
-                setCart(newCart);
-            }
+            updateItemQuantity(item.product.id, existingItem.quantity + item.quantity);
         } else {
             const newCart = new Cart([...cart.items]);
             item.id = newCart.items.length + 1;
@@ -74,6 +62,25 @@ export default function CartProvider({
         timeoutRef.current = setTimeout(() => {
             setFlag(false);
         }, 900);
+    };
+
+    const updateItemQuantity = (productId: number, newQuantity: number) => {
+        setCart((prevCart) => {
+            const existing = prevCart.items.find(
+                (i) => i.product.id === productId
+            );
+            if (!existing) return prevCart;
+
+            const updatedItem = new Item(newQuantity, existing.product);
+            updatedItem.id = existing.id;
+
+            const newItems = prevCart.items.map((i) =>
+                i.product.id === productId ? updatedItem : i
+            );
+
+            const newCart = new Cart(newItems);
+            return newCart;
+        });
     };
 
     const removeItem = (productId: number) => {
@@ -96,6 +103,7 @@ export default function CartProvider({
                 clearCart,
                 isAddItem,
                 hasItems,
+                updateItemQuantity,
             }}
         >
             {children}
