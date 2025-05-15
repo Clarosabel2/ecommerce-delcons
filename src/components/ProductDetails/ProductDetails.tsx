@@ -78,6 +78,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
 
                         <div className="flex items-center gap-4">
                             <QuantitySelector
+                                className='lg:w-8 lg:h-8'
                                 value={quantity}
                                 onChange={onQuantityChange}
                             />

@@ -33,21 +33,27 @@ export default function CartItem({ item }: CartItemProps) {
                         Cantidad:
                         <NumberFlow value={Number(item.quantity.toFixed(2))} />
                     </p>
-                    <p>Subtotal: $
+                    <p>
+                        Subtotal: $
                         <NumberFlow value={Number(item.subtotal.toFixed(2))} />
                     </p>
                 </div>
             </section>
-            <QuantitySelector
-                value={item.quantity}
-                onChange={(v) => addItem(new Item(v, item.product))}
-            />
-            <button
-                className="p-2 text-red-500 border cursor-pointer rounded-xl hover:text-red-700 hover:bg-gray-100"
-                onClick={() => removeItem(item.product.id)}
-            >
-                <FaTrash />
-            </button>
+            <div>
+                {item.quantity !== 1 ? (
+                    <QuantitySelector
+                        value={item.quantity}
+                        onChange={(v) => addItem(new Item(v, item.product))}
+                    />
+                ) : (
+                    <button
+                        className="p-2 text-red-500 border cursor-pointer rounded-xl hover:text-red-700 hover:bg-gray-100"
+                        onClick={() => removeItem(item.product.id)}
+                    >
+                        <FaTrash />
+                    </button>
+                )}
+            </div>
         </div>
     );
 }
