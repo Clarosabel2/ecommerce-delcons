@@ -26,11 +26,11 @@ export default function Card({ product }: Props) {
             onClick={handleClick}
         >
             {/* Imagen y badge de descuento */}
-            <div className="relative h-48 bg-gray-100">
+            <div className="relative h-48 overflow-hidden bg-gray-100">
                 <img 
                     src={product.image}
                     alt={product.name}
-                    className="object-contain w-full h-full p-4 transition-transform duration-300 group-hover:scale-110"
+                    className="object-contain w-full h-full p-4 transition-all duration-300 group-hover:scale-110 drop-shadow-[0px_10px_7px_rgba(33,33,33,0.9)] group-hover:drop-shadow-[00px_20px_12px_rgba(20,20,20,0.4)]"
                 />
                 {product.discountPercentage && (
                     <span className="absolute px-2 py-1 text-xs font-bold text-white bg-green-500 rounded-full top-2 right-2">
