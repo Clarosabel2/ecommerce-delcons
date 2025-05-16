@@ -1,10 +1,12 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import AnimatedLink from "./AnimatedLink";
 import Cart from "./Cart/CartComponent";
 
 export default function Header() {
+    const location = useLocation();
+    const isCheckout = location.pathname === "/checkout";
     const navegate = useNavigate();
     const handleClick = (page: string) => {
         navegate(page);
@@ -20,9 +22,11 @@ export default function Header() {
                 </div>
                 <div>
                     <ul className="flex items-center justify-center gap-2">
-                        <li className="hidden lg:block">
-                            <Cart />
-                        </li>
+                        {!isCheckout && (
+                            <li className="hidden lg:block">
+                                <Cart />
+                            </li>
+                        )}
                         <li>
                             <AnimatedLink href="/auth">Sign In</AnimatedLink>
                         </li>

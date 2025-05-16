@@ -5,8 +5,10 @@ import { useCart } from "../../hooks/userCart";
 import { FaTrash } from "react-icons/fa";
 import QuantitySelector from "../../components/QuantitySelector";
 import { Item } from "../../models/Cart";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function index() {
+    const navigate = useNavigate();
     const { cart, clearCart,removeItem,addItem,updateItemQuantity } = useCart();
     return (
         <>
@@ -100,6 +102,7 @@ export default function index() {
                                 <button
                                     className="w-full px-4 py-3 mt-6 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
                                     disabled={cart.items.length === 0}
+                                    onClick={() => navigate("/checkout")}
                                 >
                                     Proceder al pago
                                 </button>

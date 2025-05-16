@@ -4,11 +4,13 @@ import { SlArrowUp } from "react-icons/sl";
 import CartItem from "./CartItem";
 import NumberFlow from "@number-flow/react";
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 export default function CartPhone() {
     const { cart, isAddItem } = useCart();
     const [expanded, setExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    const navigate = useNavigate();
     const toggleCart = () => setExpanded((prev) => !prev);
 
     return (
@@ -57,9 +59,19 @@ export default function CartPhone() {
                         }`}
                     >
                         {cart.items.length !== 0 ? (
-                            cart.items.map((item) => (
-                                <CartItem key={item.id} item={item} />
-                            ))
+                            <>
+                                {cart.items.map((item) => (
+                                    <CartItem key={item.id} item={item} />
+                                ))}
+                                <div className="sticky bottom-0 flex items-center justify-center w-full p-4 bg-white shadow-lg">
+                                    <button
+                                        className="w-full px-6 py-3 text-lg font-medium text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                        onClick={() => navigate('/checkout')}
+                                    >
+                                        Finalizar compra
+                                    </button>
+                                </div>
+                            </>
                         ) : (
                             <div className="flex flex-col items-center justify-center h-full py-8 text-gray-500">
                                 <p className="text-lg font-light">
