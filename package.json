@@ -16,7 +16,6 @@
     "clsx": "^2.1.1",
     "delcons-front": "file:",
     "react": "18",
-    "react-19-credit-cards": "1.0.3",
     "react-credit-cards-2": "^1.0.3",
     "react-dom": "18",
     "react-icons": "^5.5.0",
