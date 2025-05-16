@@ -43,9 +43,7 @@ export default function CartItem({ item }: CartItemProps) {
                 {item.quantity !== 1 ? (
                     <QuantitySelector
                         value={item.quantity}
-                        onChange={(newQuantity) =>
-                            updateItemQuantity(item.product.id, newQuantity)
-                        }
+                        onChange={(newQuantity) => updateItemQuantity(item.product.id, newQuantity)}
                     />
                 ) : (
                     <button

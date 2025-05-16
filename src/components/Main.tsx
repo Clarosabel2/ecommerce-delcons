@@ -12,8 +12,6 @@ export default function Main() {
     const [categorySelect, setCategorySelect] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
 
-    const {clearCart} = useCart();
-
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -45,9 +43,12 @@ export default function Main() {
                 <div className="container px-4 py-8 mx-auto">
                     {/* Header de la tienda */}
                     <div className="mb-8">
-                        <h1 className="text-3xl font-bold text-gray-900">Nuestra Tienda</h1>
-                        <p className="mt-2 text-gray-600">Encuentra los mejores productos al mejor precio</p>
-                        <button type="button" onClick={clearCart} className="bg-red-400">Limpiar Carrito</button>
+                        <h1 className="text-3xl font-bold text-gray-900">
+                            Nuestra Tienda
+                        </h1>
+                        <p className="mt-2 text-gray-600">
+                            Encuentra los mejores productos al mejor precio
+                        </p>
                     </div>
 
                     <div className="flex flex-col gap-6 lg:flex-row">
@@ -72,16 +73,23 @@ export default function Main() {
                             </div>
 
                             {/* Paginación (opcional) */}
-                            <Pagination currentPage={1} totalPages={3} onPageChange={() => {}}></Pagination>
+                            <Pagination
+                                currentPage={1}
+                                totalPages={3}
+                                onPageChange={() => {}}
+                            ></Pagination>
                         </main>
                     </div>
-
                 </div>
             ) : (
                 <div className="flex items-center justify-center min-h-[calc(100vh-64px)]">
                     <div className="text-center">
-                        <h2 className="text-2xl font-semibold text-gray-900">No hay productos disponibles</h2>
-                        <p className="mt-2 text-gray-600">Intenta con otros filtros o vuelve más tarde</p>
+                        <h2 className="text-2xl font-semibold text-gray-900">
+                            No hay productos disponibles
+                        </h2>
+                        <p className="mt-2 text-gray-600">
+                            Intenta con otros filtros o vuelve más tarde
+                        </p>
                     </div>
                 </div>
             )}

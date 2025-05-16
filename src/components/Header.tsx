@@ -21,14 +21,10 @@ export default function Header() {
                 <div>
                     <ul className="flex items-center justify-center gap-2">
                         <li className="hidden lg:block">
-                            <AnimatedLink>
-                                <Cart/>
-                            </AnimatedLink>
+                            <Cart />
                         </li>
                         <li>
-                            <AnimatedLink href="/auth">
-                                Sign In
-                            </AnimatedLink>
+                            <AnimatedLink href="/auth">Sign In</AnimatedLink>
                         </li>
                     </ul>
                 </div>

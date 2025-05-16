@@ -86,10 +86,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                                 onChange={onQuantityChange}
                             />
                             <Button
-                                onClick={() => {
-                                    onAddToCart(new Item(quantity, product));
-                                }}
+                                onClick={() => onAddToCart(new Item(quantity, product))}
                             >
+                                
                                 <FaCartPlus className="mr-2" />
                                 <span>Agregar al Carrito</span>
                             </Button>

@@ -65,6 +65,7 @@ export default function CartProvider({
     };
 
     const updateItemQuantity = (productId: number, newQuantity: number) => {
+        console.log("updateItemQuantity", productId, newQuantity);
         setCart((prevCart) => {
             const existing = prevCart.items.find(
                 (i) => i.product.id === productId

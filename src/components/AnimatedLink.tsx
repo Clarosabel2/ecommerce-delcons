@@ -5,6 +5,7 @@ interface AnimatedLinkProps {
     href?: string;
     children: React.ReactNode;
     className?: string;
+    onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export default function AnimatedLink({

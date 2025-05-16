@@ -5,8 +5,11 @@ import { FaTrash } from "react-icons/fa";
 import { useCart } from "../../hooks/userCart";
 import CartItem from "./CartItem";
 import NumberFlow from "@number-flow/react";
+import { useNavigate } from "react-router-dom";
+import AnimatedLink from "../AnimatedLink";
 
 export default function CartComponent() {
+    const navigate = useNavigate();
     const [isHovered, setIsHovered] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -29,6 +32,7 @@ export default function CartComponent() {
         }, 100);
     };
 
+
     return (
         <div
             className={`relative flex ${
@@ -37,12 +41,14 @@ export default function CartComponent() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <div className="relative flex">
-                <CiShoppingCart className="mr-1 text-4xl" />
-                <div className="absolute flex items-center justify-center w-full h-full">
-                    <NumberFlow value={cart.items.length}/>
+            <AnimatedLink href="/cart">
+                <div className="relative flex">
+                    <CiShoppingCart className="mr-1 text-4xl" />
+                    <div className="absolute flex items-center justify-center w-full h-full">
+                        <NumberFlow value={cart.items.length} />
+                    </div>
                 </div>
-            </div>
+            </AnimatedLink>
 
             {isVisible && (
                 <div
@@ -68,8 +74,10 @@ export default function CartComponent() {
                     <div className="flex items-center justify-between w-full px-4 py-2 text-black bg-gray-200 rounded-md shadow">
                         <span className="font-semibold">Total:</span>
                         <span className="text-lg font-semibold">
-                            $<NumberFlow value={Number(cart.amount.toFixed(2))}/>
-                            
+                            $
+                            <NumberFlow
+                                value={Number(cart.amount.toFixed(2))}
+                            />
                         </span>
                     </div>
                 </div>
