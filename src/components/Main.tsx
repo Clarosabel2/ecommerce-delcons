@@ -66,9 +66,7 @@ export default function Main() {
                         <main className="w-full lg:w-3/4">
                             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                                 {products.map((product) => (
-                                    <div className="transition-transform duration-300 hover:-translate-y-1">
-                                        <Card product={product} />
-                                    </div>
+                                    <Card product={product} />
                                 ))}
                             </div>
 
