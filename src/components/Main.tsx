@@ -63,7 +63,7 @@ export default function Main() {
                                 </div>
                             </aside>
 
-                            {/* Grid de productos */}
+                            
                             <main className="w-full lg:w-3/4">
                                 <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                                     {products.map((product) => (
@@ -72,7 +72,7 @@ export default function Main() {
                                 </div>
                             </main>
                         </div>
-                        {/* Paginación (opcional) */}
+                        {/* Paginación*/}
                         <div className="flex self-end justify-center w-full lg:w-3/4">
                             <Pagination
                                 currentPage={1}
