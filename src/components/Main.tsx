@@ -29,7 +29,7 @@ export default function Main() {
     }, [categorySelect]);
 
     return (
-        <div className="z-50 min-h-screen pt-20 bg-gray-50">
+        <div className="z-50 min-h-screen bg-gray-50">
             {loading ? (
                 <div className="flex items-center justify-center min-h-[calc(100vh-64px)]">
                     <OrbitProgress

@@ -12,27 +12,31 @@ export default function Header() {
         navegate(page);
     };
     return (
-        <div className="fixed z-10 flex items-center justify-between w-full p-4 mb-5 bg-white shadow-xl">
-            <nav className="flex items-center justify-between w-full px-4">
-                <div
-                    className="rounded px-[2rem] hover:bg-gray-100 transition-all duration-300 cursor-pointer"
-                    onClick={() => handleClick("/")}
-                >
-                    <Logo></Logo>
-                </div>
-                <div>
-                    <ul className="flex items-center justify-center gap-2">
-                        {!isCheckout && (
-                            <li className="hidden lg:block">
-                                <Cart />
+        <div className="pb-20">
+            <div className="fixed z-10 flex items-center justify-between w-full p-4 mb-5 bg-white shadow-xl">
+                <nav className="flex items-center justify-between w-full px-4">
+                    <div
+                        className="rounded px-[2rem] hover:bg-gray-100 transition-all duration-300 cursor-pointer"
+                        onClick={() => handleClick("/")}
+                    >
+                        <Logo></Logo>
+                    </div>
+                    <div>
+                        <ul className="flex items-center justify-center gap-2">
+                            {!isCheckout && (
+                                <li className="hidden lg:block">
+                                    <Cart />
+                                </li>
+                            )}
+                            <li>
+                                <AnimatedLink href="/auth">
+                                    Sign In
+                                </AnimatedLink>
                             </li>
-                        )}
-                        <li>
-                            <AnimatedLink href="/auth">Sign In</AnimatedLink>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
     );
 }
