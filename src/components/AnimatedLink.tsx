@@ -29,7 +29,7 @@ export default function AnimatedLink({
                 after:absolute 
                 after:left-0 
                 after:bottom-0 
-                after:h-[.1px] 
+                after:h-[1.2px]
                 after:w-0 
                 after:bg-gray-700 
                 after:transition-all 

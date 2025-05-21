@@ -7,6 +7,7 @@ import { getCategories } from "../services/StoreApi";
 import AnimatedLink from "./AnimatedLink";
 import ListItem from "./ListItem";
 import { Item } from "../models/Cart";
+import { get } from "http";
 
 type Props = {
     categorySelect: string[];
@@ -47,6 +48,16 @@ export default function FilterPanel({
         };
     }, [showMobile]);
 
+    useEffect(() => {
+        const fetchCategories = async () => {
+          const categories = await getCategories();
+          setCategories(categories);
+          console.log(categories);
+        };
+      
+        fetchCategories();
+      }, []);
+
     const handleResetFilters = () => {
         setPriceRange([0, 1000]);
         setCategorySelect([]);
@@ -78,7 +89,6 @@ export default function FilterPanel({
                     style={{ transform: "translateZ(0)" }}
                 >
                     <FaFilter className="w-5 h-5" />
-                    <span>Filtros</span>
                 </button>
 
                 {/* Overlay */}
@@ -92,7 +102,7 @@ export default function FilterPanel({
                 {/* Panel móvil */}
                 <div
                     id="filter-panel"
-                    className={`fixed top-0 right-0 h-screen w-[300px] transform transition-transform duration-300 ease-in-out bg-white
+                    className={`fixed top-0 right-0 h-screen w-[300px] transform transition-transform duration-300 ease-in-out bg-white z-[60]
                         ${showMobile ? "translate-x-0" : "translate-x-full"}`}
                     style={{
                         transform: `translateX(${
@@ -144,7 +154,7 @@ const FilterContent = ({
                 <h3 className="mb-4 text-lg font-semibold text-slate-800">
                     Categorías
                 </h3>
-                <div className="space-y-2 max-h-[200px] overflow-y-auto">
+                <div className="space-y-2 overflow-y-auto">
                     <ListItem items={categories} />
                 </div>
             </div>
@@ -154,9 +164,9 @@ const FilterContent = ({
                 <h3 className="mb-4 text-lg font-semibold text-slate-800">
                     Precio
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-1">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center">
                             <span className="text-sm text-slate-600">Min:</span>
                             <input
                                 type="number"
@@ -227,7 +237,7 @@ const FilterContent = ({
                 <h3 className="mb-4 text-lg font-semibold text-slate-800">
                     Valoración
                 </h3>
-                <div className="space-y-3">
+                <div>
                     {[5, 4, 3, 2, 1].map((rating) => (
                         <label
                             key={rating}
@@ -256,7 +266,7 @@ const FilterContent = ({
             </div>
 
             {/* Botones de acción */}
-            <div className="flex gap-3">
+            <div className="flex gap-3 pb-16">
                 <button className="flex-1 px-4 py-2 text-sm font-medium text-white transition-colors rounded-lg bg-slate-800 hover:bg-slate-700 active:bg-slate-900">
                     Aplicar filtros
                 </button>

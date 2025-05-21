@@ -22,7 +22,7 @@ export default function Card({ product }: Props) {
 
     return (
         <div
-            className="overflow-hidden transition-all duration-300 bg-white shadow-sm cursor-pointer group rounded-2xl hover:shadow-xl"
+            className="overflow-hidden transition-all duration-300 bg-white shadow-sm cursor-pointer group rounded-2xl hover:shadow-xl active:shadow-none"
             onClick={handleClick}
         >
             {/* Imagen y badge de descuento */}

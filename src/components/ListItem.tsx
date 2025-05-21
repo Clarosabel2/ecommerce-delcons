@@ -10,9 +10,7 @@ export default function ListItem({ items }: ListItemProps) {
         <ul>
             {items.map((item) => (
                 <li key={item.id}>
-                    <AnimatedLink>
-                        <input type="checkbox" name="" id="" /> {item.name}
-                    </AnimatedLink>
+                    <AnimatedLink>{item.name} (10)</AnimatedLink>
                 </li>
             ))}
         </ul>

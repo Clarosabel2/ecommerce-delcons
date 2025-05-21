@@ -14,10 +14,11 @@ export default function CartPhone() {
     const toggleCart = () => setExpanded((prev) => !prev);
 
     return (
-        <div className="pt-28 lg:pt-0">
+        <div className="z-10 pt-28 lg:pt-0">
             <div
                 className={clsx(
-                    "fixed w-full bg-white shadow-lg rounded-t-4xl cart-phone lg:hidden -bottom-20 z-50"
+                    "fixed bg-white shadow-lg cart-phone lg:hidden -bottom-20",
+                    "w-full md:max-w-[400px] md:right-10 rounded-4xl"
                 )}
             >
                 <header
@@ -32,7 +33,7 @@ export default function CartPhone() {
                                 }`}
                             />
                         </div>
-                        <h1 className="text-2xl text-center font-extralight">
+                        <h1 className="text-xl text-center font-extralight">
                             Tu carrito
                         </h1>
                     </div>
@@ -60,15 +61,21 @@ export default function CartPhone() {
                     >
                         {cart.items.length !== 0 ? (
                             <>
-                                {cart.items.map((item) => (
-                                    <CartItem key={item.id} item={item} />
-                                ))}
-                                <div className="sticky bottom-0 flex items-center justify-center w-full p-4 bg-white shadow-lg">
+                                <div className="overflow-y-auto max-h-[70vh] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                                    {cart.items.map((item) => (
+                                        <CartItem 
+                                            key={item.id} 
+                                            item={item}
+                                            
+                                        />
+                                    ))}
+                                </div>
+                                <div className="sticky bottom-0 flex items-center justify-center w-full p-4">
                                     <button
-                                        className="w-full px-6 py-3 text-lg font-medium text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                        onClick={() => navigate('/checkout')}
+                                        className="w-full px-6 py-3 text-lg font-medium text-white transition-all duration-300 bg-blue-600 rounded-lg hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:transform active:scale-[0.98]"
+                                        onClick={() => navigate("/checkout")}
                                     >
-                                        Finalizar compra
+                                        Finalizar compra ({cart.items.length} items)
                                     </button>
                                 </div>
                             </>

@@ -29,7 +29,7 @@ export default function Main() {
     }, [categorySelect]);
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="z-50 min-h-screen pt-20 bg-gray-50">
             {loading ? (
                 <div className="flex items-center justify-center min-h-[calc(100vh-64px)]">
                     <OrbitProgress
@@ -51,32 +51,35 @@ export default function Main() {
                         </p>
                     </div>
 
-                    <div className="flex flex-col gap-6 lg:flex-row">
-                        {/* Panel de filtros */}
-                        <aside className="w-full lg:w-1/4">
-                            <div className="sticky z-50 p-4 bg-white rounded-lg shadow-sm top-4">
-                                <FilterPanel
-                                    categorySelect={categorySelect}
-                                    setCategorySelect={setCategorySelect}
-                                />
-                            </div>
-                        </aside>
+                    <div className="flex flex-col gap-6">
+                        <div className="flex flex-col w-full gap-10 lg:flex-row">
+                            {/* Panel de filtros */}
+                            <aside className="w-full lg:w-1/4">
+                                <div className="sticky z-20 rounded-lg top-40">
+                                    <FilterPanel
+                                        categorySelect={categorySelect}
+                                        setCategorySelect={setCategorySelect}
+                                    />
+                                </div>
+                            </aside>
 
-                        {/* Grid de productos */}
-                        <main className="w-full lg:w-3/4">
-                            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                                {products.map((product) => (
-                                    <Card product={product} />
-                                ))}
-                            </div>
-
-                            {/* Paginación (opcional) */}
+                            {/* Grid de productos */}
+                            <main className="w-full lg:w-3/4">
+                                <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                                    {products.map((product) => (
+                                        <Card product={product} />
+                                    ))}
+                                </div>
+                            </main>
+                        </div>
+                        {/* Paginación (opcional) */}
+                        <div className="flex self-end justify-center w-full lg:w-3/4">
                             <Pagination
                                 currentPage={1}
                                 totalPages={3}
                                 onPageChange={() => {}}
-                            ></Pagination>
-                        </main>
+                            />
+                        </div>
                     </div>
                 </div>
             ) : (

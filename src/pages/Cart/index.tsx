@@ -36,7 +36,7 @@ export default function index() {
                                 ) : (
                                     <div className="space-y-4">
                                         {cart.items.map((item) => (
-                                            <div key={item.id} className="flex items-center justify-between p-4 border rounded-lg">
+                                            <div key={item.id} className="flex items-center justify-between p-4 border border-gray-300 rounded-lg">
                                                 <div className="flex items-center gap-4">
                                                     <img 
                                                         src={item.product.image}
@@ -100,7 +100,7 @@ export default function index() {
                                 </div>
 
                                 <button
-                                    className="w-full px-4 py-3 mt-6 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
+                                    className="w-full px-4 py-3 mt-6 text-white transition-colors bg-blue-600 rounded-lg cursor-pointer hover:bg-blue-700"
                                     disabled={cart.items.length === 0}
                                     onClick={() => navigate("/checkout")}
                                 >
@@ -109,7 +109,7 @@ export default function index() {
 
                                 <button
                                     onClick={clearCart}
-                                    className="flex items-center justify-center w-full gap-2 px-4 py-2 mt-4 text-red-600 transition-colors border border-red-600 rounded-lg hover:bg-red-50"
+                                    className="flex items-center justify-center w-full gap-2 px-4 py-2 mt-4 text-red-600 transition-colors border border-red-600 rounded-lg cursor-pointer hover:bg-red-50"
                                     disabled={cart.items.length === 0}
                                 >
                                     <FaTrash className="w-4 h-4" />

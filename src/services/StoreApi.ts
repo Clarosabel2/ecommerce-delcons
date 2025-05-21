@@ -1,3 +1,4 @@
+import axios from "axios";
 import Category from "../models/Category";
 import Product from "../models/Product";
 import Rating from "../models/Rating";
@@ -7,44 +8,42 @@ const API_URL = "https://dummyjson.com/products";
 
 // Se obtiene la lista de productos de la API
 export const getAllProducts = async () => {
-    const res = await fetch(API_URL);
-    if (!res.ok) {
+    try {
+        const res = await axios.get(API_URL);
+        const data = res.data;
+
+        let products = [];
+        products = data.products.map((p: any) => instanceProduct(p));
+        return products;
+    } catch (error) {
         throw new Error("Error al obtener los productos");
     }
-
-    const data = await res.json();
-
-    let products = [];
-    products = data.products.map((p: any) => instanceProduct(p));
-    return products;
 };
 // Se obtiene un producto por su id
 export const getProductById = async (id: string): Promise<Product> => {
-    const res = await fetch(`${API_URL}/${id}`);
-    if (!res.ok) {
+    try {
+        const res = await axios.get(`${API_URL}/${id}`);
+        const data = res.data;
+        return instanceProduct(data);
+    } catch (error) {
         throw new Error("Error al obtener el producto");
     }
-    const data = await res.json();
-
-    return instanceProduct(data);
 };
 //Se obtiene la lista de categorías de los productos
 export async function getCategories() {
-    const res = await fetch(API_URL + "/categories");
-
-    if (!res.ok) {
+    let categoriesProduct: Category[] = [];
+    try {
+        const res = await axios.get(API_URL + "/categories");
+        const data = res.data;
+        let i=0;
+        data.forEach((c, i) => {
+            console.log(c);
+            categoriesProduct.push(new Category(i, capitalize(c.name)));
+            i++;
+        });
+    } catch (error) {
         throw new Error("Error al obtener las categorías");
     }
-
-    let categoriesProduct: Category[] = [];
-
-    const data = await res.json();
-
-    data.forEach((c, i) => {
-        console.log(c);
-        categoriesProduct.push(new Category(i, capitalize(c)));
-    });
-
     return categoriesProduct;
 }
 
@@ -90,7 +89,7 @@ function instanceProduct(obj: any): Product {
             createdAt: obj.meta?.createdAt,
             updatedAt: obj.meta?.updatedAt,
             barcode: obj.meta?.barcode,
-            qrCode: obj.meta?.qrCode
+            qrCode: obj.meta?.qrCode,
         },
         obj.images,
         obj.thumbnail
