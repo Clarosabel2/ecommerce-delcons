@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../../components/Header";
-import Main from "../../components/Main";
-import Footer from "../../components/Footer";
+import Header from "../../components/ui/Header";
+import Main from "../../components/ui/Main";
+import Footer from "../../components/ui/Footer";
 
 export default function index() {
     return (

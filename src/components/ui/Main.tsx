@@ -3,7 +3,7 @@ import Card from "./Card";
 import { getAllProducts } from "../../services/StoreApi";
 import FilterPanel from "../filters/FilterPanel";
 import { OrbitProgress } from "react-loading-indicators";
-import CartPhone from "../Cart/CartPhone";
+import CartPhone from "../cart/CartPhone";
 import Pagination from "./Pagination";
 import { useCart } from "../../hooks/userCart";
 
@@ -65,7 +65,7 @@ export default function Main() {
                                 </div>
                             </aside>
 
-                            {/* Grid de productos */}
+                            
                             <main className="w-full lg:w-3/4">
                                 
                                 <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -75,7 +75,7 @@ export default function Main() {
                                 </div>
                             </main>
                         </div>
-                        {/* Paginación (opcional) */}
+                        {/* Paginación*/}
                         <div className="flex self-end justify-center w-full lg:w-3/4">
                             <Pagination
                                 currentPage={1}
