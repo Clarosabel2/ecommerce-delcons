@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import Category from "../models/Category";
-import { getCategories } from "../services/StoreApi";
-import AnimatedLink from "./AnimatedLink";
-import ListItem from "./ListItem";
-import { Item } from "../models/Cart";
-import { get } from "http";
+import Category from "../../models/Category";
+import { getCategories } from "../../services/StoreApi";
+import ListItem from "../product-details/ListItem";
 
 type Props = {
     categorySelect: string[];

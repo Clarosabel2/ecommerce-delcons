@@ -1,5 +1,5 @@
 import React from "react";
-import AnimatedLink from "./AnimatedLink";
+import AnimatedLink from "../ui/AnimatedLink";
 
 interface ListItemProps {
     items: Array<any>;

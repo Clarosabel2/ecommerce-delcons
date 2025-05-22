@@ -1,10 +1,10 @@
 import React from "react";
-import Product from "../models/Product";
+import Product from "../../models/Product";
 import { useNavigate } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa";
-import RatingStar from "./RatingStar";
-import { useCart } from "../hooks/userCart";
-import { Item } from "../models/Cart";
+import RatingStar from "../product-details/RatingStar";
+import { useCart } from "../../hooks/userCart";
+import { Item } from "../../models/Cart";
 
 type Props = {
     product: Product;
