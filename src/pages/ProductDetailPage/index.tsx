@@ -7,7 +7,7 @@ import Footer from "../../components/ui/Footer";
 import ScrollToTop from "../../components/common/ScrollToTop";
 import { useCart } from "../../hooks/userCart";
 import { OrbitProgress } from "react-loading-indicators";
-import CartPhone from "../../components/cart/CartPhone";
+import CartPhone from "../../components/cart-component/CartPhone";
 import ProductDetails from "../../components/product-details/ProductDetails";
 
 export default function ProductDetailPage() {

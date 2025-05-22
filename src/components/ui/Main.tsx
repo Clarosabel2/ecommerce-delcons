@@ -3,7 +3,7 @@ import Card from "./Card";
 import { getAllProducts } from "../../services/StoreApi";
 import FilterPanel from "../filters/FilterPanel";
 import { OrbitProgress } from "react-loading-indicators";
-import CartPhone from "../cart/CartPhone";
+import CartPhone from "../cart-component/CartPhone";
 import Pagination from "./Pagination";
 import { useCart } from "../../hooks/userCart";
 

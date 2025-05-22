@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import AnimatedLink from "./AnimatedLink";
-import CartComponent from "../Cart/CartComponent";
+import CartComponent from "../cart-component/CartComponent";
 
 
 export default function Header() {
