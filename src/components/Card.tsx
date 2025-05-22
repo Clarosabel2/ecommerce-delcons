@@ -13,8 +13,9 @@ type Props = {
 export default function Card({ product }: Props) {
     const navigate = useNavigate();
     const { cart, addItem } = useCart();
-    
-    const existingItem = cart.items.find(i => i.product.id === product.id);
+
+
+    const existingItem = cart.items.find((i) => i.product.id === product.id);
 
     const handleClick = () => {
         navigate(`/product/${product.id}`);
@@ -27,7 +28,7 @@ export default function Card({ product }: Props) {
         >
             {/* Imagen y badge de descuento */}
             <div className="relative h-48 overflow-hidden bg-gray-100">
-                <img 
+                <img
                     src={product.image}
                     alt={product.name}
                     className="object-contain w-full h-full p-4 transition-all duration-300 group-hover:scale-110 drop-shadow-[0px_1px_3px_rgba(33,33,33,0.9)] group-hover:drop-shadow-[0px_3px_13px_rgba(33,33,33,0.8)]"
@@ -88,9 +89,11 @@ export default function Card({ product }: Props) {
                     </div>
                     <button
                         className="p-2 text-white transition-colors bg-blue-600 rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                        onClick={(e)=>{
+                        onClick={(e) => {
                             e.stopPropagation();
-                            addItem(new Item(1, product))}}
+                            addItem(new Item(1, product));
+                            
+                        }}
                         disabled={existingItem?.quantity === product.stock}
                     >
                         <FaCartPlus className="w-5 h-5" />

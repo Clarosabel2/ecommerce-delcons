@@ -10,6 +10,7 @@ import React, {
 
 import Cart, { Item } from "../models/Cart";
 import { StorageService } from "../services/storage.service";
+import toast, { Toaster } from "react-hot-toast";
 
 interface CartContextProps {
     cart: Cart;
@@ -32,7 +33,6 @@ export const CartContext = createContext<CartContextProps | undefined>(
 export default function CartProvider({
     children,
 }: CartProviderProps): JSX.Element {
-    // Inicializar el carrito desde el servicio de almacenamiento
     const [cart, setCart] = useState(() => {
         return StorageService.loadCart() || new Cart([]);
     });
@@ -41,7 +41,7 @@ export default function CartProvider({
     const [isAddItem, setFlag] = useState(false);
     const [hasItems, setHasItems] = useState(false);
 
-    // Guardar en storage cada vez que el carrito cambie
+    //Se Guardar en storage cada vez que el carrito cambie
     useEffect(() => {
         StorageService.saveCart(cart);
         setHasItems(cart.items.length > 0);
@@ -95,6 +95,12 @@ export default function CartProvider({
         StorageService.clearCart();
     };
 
+    useEffect(() => {
+            if (isAddItem) {
+                toast.success("Producto agregado al carrito!");
+            }
+        }, [isAddItem]);
+
     return (
         <CartContext.Provider
             value={{
@@ -108,6 +114,7 @@ export default function CartProvider({
             }}
         >
             {children}
+            <Toaster position="bottom-right" reverseOrder={false}/>
         </CartContext.Provider>
     );
 }

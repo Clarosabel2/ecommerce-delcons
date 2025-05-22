@@ -39,7 +39,7 @@ export default function FilterPanel({
     // Prevenir scroll del body cuando el panel móvil está abierto
     useEffect(() => {
         if (showMobile) {
-            document.body.style.overflow = "hidden";
+            document.body.style.overflow = "hidden";    
         } else {
             document.body.style.overflow = "unset";
         }

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { CiShoppingCart } from "react-icons/ci";
-import { FaTrash } from "react-icons/fa";
 import { useCart } from "../../hooks/userCart";
 import CartItem from "./CartItem";
 import NumberFlow from "@number-flow/react";
@@ -60,7 +59,7 @@ export default function CartComponent() {
                             Tu carrito
                         </p>
                     </div>
-                    <div className="space-y-2 overflow-auto text-sm text-gray-600 max-h-72">
+                    <div className="space-y-2 overflow-y-auto text-sm text-gray-600 max-h-72">
                         {cart.items.length === 0 ? (
                             <p className="text-center">
                                 No hay productos en el carrito.
