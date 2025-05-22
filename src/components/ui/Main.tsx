@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import { getAllProducts } from "../services/StoreApi";
-import FilterPanel from "./FilterPanel";
+import { getAllProducts } from "../../services/StoreApi";
+import FilterPanel from "../filters/FilterPanel";
 import { OrbitProgress } from "react-loading-indicators";
-import CartPhone from "./Cart/CartPhone";
+import CartPhone from "../Cart/CartPhone";
 import Pagination from "./Pagination";
-import toast, { Toaster } from "react-hot-toast";
-import { useCart } from "../hooks/userCart";
+import { useCart } from "../../hooks/userCart";
 
 export default function Main() {
     const [products, setProducts] = useState([]);
@@ -14,8 +13,6 @@ export default function Main() {
     const [loading, setLoading] = useState(false);
 
     const { isAddItem } = useCart();
-
-    
 
     useEffect(() => {
         const fetchProducts = async () => {

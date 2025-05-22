@@ -5,7 +5,7 @@ import { useCart } from "../../hooks/userCart";
 import CartItem from "./CartItem";
 import NumberFlow from "@number-flow/react";
 import { useNavigate } from "react-router-dom";
-import AnimatedLink from "../AnimatedLink";
+import AnimatedLink from "../ui/AnimatedLink";
 
 export default function CartComponent() {
     const navigate = useNavigate();

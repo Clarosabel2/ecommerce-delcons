@@ -2,7 +2,7 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 import { useCart } from "../../hooks/userCart";
 import { Item } from "../../models/Cart";
-import QuantitySelector from "../QuantitySelector";
+import QuantitySelector from "./QuantitySelector";
 import NumberFlow from "@number-flow/react";
 
 interface CartItemProps {
