@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { StorageService } from "../../services/storage.service";
 import { useCart } from "../../hooks/userCart";
 import Header from "../../components/ui/Header";
 import PaymentForm from "../../components/credit-card/PaymentForm";

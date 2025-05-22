@@ -3,7 +3,7 @@ import Header from "../../components/ui/Header";
 import Footer from "../../components/ui/Footer";
 import { useCart } from "../../hooks/userCart";
 import { FaTrash } from "react-icons/fa";
-import QuantitySelector from "../../components/cart/QuantitySelector";
+import QuantitySelector from "../../components/Cart/QuantitySelector";
 import { Item } from "../../models/Cart";
 import { Navigate, useNavigate } from "react-router-dom";
 
