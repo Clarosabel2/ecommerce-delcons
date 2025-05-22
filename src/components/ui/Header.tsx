@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import AnimatedLink from "./AnimatedLink";
-import Cart from "../cart/CartComponent";
+import CartComponent from "../cart-component/CartComponent";
+
 
 export default function Header() {
     const location = useLocation();
@@ -25,7 +26,7 @@ export default function Header() {
                         <ul className="flex items-center justify-center gap-2">
                             {!isCheckout && (
                                 <li className="hidden lg:block">
-                                    <Cart />
+                                    <CartComponent />
                                 </li>
                             )}
                             <li>
