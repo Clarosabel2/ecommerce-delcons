@@ -3,7 +3,7 @@ import Product from '../../models/Product';
 import RatingStar from '../product-details/RatingStar';
 import Button from '../ui/Button';
 import { FaCartPlus } from 'react-icons/fa';
-import QuantitySelector from '../../components/Cart/QuantitySelector';
+import QuantitySelector from './QuantitySelector';
 import { Item } from '../../models/Cart';
 
 interface ProductDetailsProps {

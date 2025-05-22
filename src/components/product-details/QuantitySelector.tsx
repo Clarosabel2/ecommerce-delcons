@@ -1,5 +1,5 @@
-import NumberFlow from "@number-flow/react";
 import React from "react";
+import NumberFlow from "@number-flow/react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
 interface QuantitySelectorProps {
