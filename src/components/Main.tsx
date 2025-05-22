@@ -5,12 +5,17 @@ import FilterPanel from "./FilterPanel";
 import { OrbitProgress } from "react-loading-indicators";
 import CartPhone from "./Cart/CartPhone";
 import Pagination from "./Pagination";
+import toast, { Toaster } from "react-hot-toast";
 import { useCart } from "../hooks/userCart";
 
 export default function Main() {
     const [products, setProducts] = useState([]);
     const [categorySelect, setCategorySelect] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
+
+    const { isAddItem } = useCart();
+
+    
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -65,6 +70,7 @@ export default function Main() {
 
                             {/* Grid de productos */}
                             <main className="w-full lg:w-3/4">
+                                
                                 <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                                     {products.map((product) => (
                                         <Card product={product} />
