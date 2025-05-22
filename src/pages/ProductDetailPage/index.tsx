@@ -6,7 +6,6 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/common/ScrollToTop";
 import { useCart } from "../../hooks/userCart";
-import { Item } from "../../models/Cart";
 import { OrbitProgress } from "react-loading-indicators";
 import CartPhone from "../../components/Cart/CartPhone";
 import ProductDetails from "../../components/ProductDetails/ProductDetails";
