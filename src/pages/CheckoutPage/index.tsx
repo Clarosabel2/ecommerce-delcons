@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useCart } from "../../hooks/userCart";
-import Header from "../../components/Header";
-import PaymentForm from "../../components/CreditCard/PaymentForm";
+import Header from "../../components/ui/Header";
+import PaymentForm from "../../components/credit-card/PaymentForm";
 
 export const CheckoutPage = () => {
     const { cart } = useCart();

@@ -3,13 +3,12 @@ import Header from "../../components/ui/Header";
 import Footer from "../../components/ui/Footer";
 import { useCart } from "../../hooks/userCart";
 import { FaTrash } from "react-icons/fa";
-import { Item } from "../../models/Cart";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import QuantitySelector from "../../components/product-details/QuantitySelector";
 
 export default function index() {
     const navigate = useNavigate();
-    const { cart, clearCart,removeItem,addItem,updateItemQuantity } = useCart();
+    const { cart, clearCart,removeItem,updateItemQuantity } = useCart();
     return (
         <>
             <Header />
