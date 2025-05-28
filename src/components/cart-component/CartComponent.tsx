@@ -6,6 +6,7 @@ import CartItem from "./CartItem";
 import NumberFlow from "@number-flow/react";
 import { useNavigate } from "react-router-dom";
 import AnimatedLink from "../ui/AnimatedLink";
+import clsx from "clsx";
 
 export default function CartComponent() {
     const navigate = useNavigate();
@@ -31,23 +32,24 @@ export default function CartComponent() {
         }, 100);
     };
 
-
     return (
         <div
-            className={`relative flex ${
-                isAddItem ? "animate-vertical-bounce" : ""
-            }`}
+            className={clsx("relative flex", {
+                "animate-vertical-bounce": isAddItem,
+            })}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-        >
-            <AnimatedLink href="/cart">
-                <div className="relative flex">
-                    <CiShoppingCart className="mr-1 text-4xl" />
-                    <div className="absolute flex items-center justify-center w-full h-full">
-                        <NumberFlow value={cart.items.length} />
+        > 
+             <div className={clsx({ 'animate-jelly': isAddItem })}>
+                <AnimatedLink href="/cart">
+                    <div className="relative flex">
+                        <CiShoppingCart className="mr-1 text-4xl" />
+                        <div className="absolute flex items-center justify-center w-full h-full">
+                            <NumberFlow value={cart.items.length} />
+                        </div>
                     </div>
-                </div>
-            </AnimatedLink>
+                </AnimatedLink>
+            </div>
 
             {isVisible && (
                 <div
