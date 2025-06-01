@@ -5,6 +5,7 @@ import { FaCartPlus } from "react-icons/fa";
 import RatingStar from "../product-details/RatingStar";
 import { useCart } from "../../hooks/userCart";
 import { Item } from "../../models/Cart";
+import ImageZoomShadow from "./ImageZoomShadow";
 
 type Props = {
     product: Product;
@@ -31,8 +32,17 @@ export default function Card({ product }: Props) {
                 <img
                     src={product.image}
                     alt={product.name}
-                    className="object-contain w-full h-full p-4 transition-all duration-300 group-hover:scale-110 drop-shadow-[0px_1px_3px_rgba(33,33,33,0.9)] group-hover:drop-shadow-[0px_3px_13px_rgba(33,33,33,0.8)]"
+
+                    className="object-contain w-full h-full p-4 transition-all duration-300 group-hover:scale-110 drop-shadow-[0px_4px_2px_rgba(0,0,0,0.9)] group-hover:drop-shadow-[0px_3px_13px_rgba(33,33,33,0.6)]"
+                    />
+                    {/*
+                <ImageZoomShadow 
+                    src={product.image}
+                    alt={product.name}
+                    className="object-contain w-full h-full p-4 transition-all duration-300 group-hover:scale-110 drop-shadow-[1px_2px_3px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0px_3px_13px_rgba(33,33,33,0.8)]"
                 />
+                 */}
+
                 {product.discountPercentage && (
                     <span className="absolute px-2 py-1 text-xs font-bold text-white bg-green-500 rounded-full top-2 right-2">
                         {product.discountPercentage}% OFF
