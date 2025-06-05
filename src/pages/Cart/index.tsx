@@ -5,7 +5,9 @@ import { useCart } from "../../hooks/userCart";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import QuantitySelector from "../../components/product-details/QuantitySelector";
+
 import ScrollToTop from "../../components/common/ScrollToTop";
+
 
 export default function index() {
     const navigate = useNavigate();
