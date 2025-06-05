@@ -85,7 +85,7 @@ export default function FilterPanel({
                     onClick={() => setShowMobile(!showMobile)}
                     style={{ transform: "translateZ(0)" }}
                 >
-                    <FaFilter className="w-5 h-5" />
+                    <FaFilter className="w-5 h-5"/>
                 </button>
 
                 {/* Overlay */}
@@ -99,7 +99,7 @@ export default function FilterPanel({
                 {/* Panel móvil */}
                 <div
                     id="filter-panel"
-                    className={`fixed top-0 right-0 h-screen w-[300px] transform transition-transform duration-300 ease-in-out bg-white z-[60]
+                    className={`fixed top-0 right-0 h-screen w-[300px] transform transition-transform duration-300 ease-in-out bg-white rounded-l-3xl
                         ${showMobile ? "translate-x-0" : "translate-x-full"}`}
                     style={{
                         transform: `translateX(${

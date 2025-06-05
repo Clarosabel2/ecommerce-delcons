@@ -31,7 +31,7 @@ export default function Main() {
     }, [categorySelect]);
 
     return (
-        <div className="z-50 min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50">
             {loading ? (
                 <div className="flex items-center justify-center min-h-[calc(100vh-64px)]">
                     <OrbitProgress
@@ -53,11 +53,11 @@ export default function Main() {
                         </p>
                     </div>
 
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-6 ">
                         <div className="flex flex-col w-full gap-10 lg:flex-row">
                             {/* Panel de filtros */}
                             <aside className="w-full lg:w-1/4">
-                                <div className="sticky z-20 rounded-lg top-40">
+                                <div className="sticky z-10 rounded-lg top-40">
                                     <FilterPanel
                                         categorySelect={categorySelect}
                                         setCategorySelect={setCategorySelect}
@@ -65,9 +65,7 @@ export default function Main() {
                                 </div>
                             </aside>
 
-                            
-                            <main className="w-full lg:w-3/4">
-                                
+                            <main className="z-0 w-full lg:w-3/4">
                                 <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                                     {products.map((product) => (
                                         <Card product={product} />
@@ -97,6 +95,7 @@ export default function Main() {
                     </div>
                 </div>
             )}
+
             <CartPhone />
         </div>
     );
