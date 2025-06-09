@@ -30,12 +30,10 @@ export default function CartItem({ item }: CartItemProps) {
                 </p>
                 <div className="ml-2 text-xs">
                     <p>
-                        Cantidad:
-                        <NumberFlow value={Number(item.quantity.toFixed(2))} />
+                        Cantidad: {item.quantity.toFixed(2)}
                     </p>
                     <p>
-                        Subtotal: $
-                        <NumberFlow value={Number(item.subtotal.toFixed(2))} />
+                        Subtotal: ${Number(item.subtotal.toFixed(2))}
                     </p>
                 </div>
             </section>

@@ -14,7 +14,7 @@ export default function Header() {
     };
     return (
         <div className="pb-20">
-            <div className="fixed z-10 flex items-center justify-between w-full p-4 mb-5 bg-white shadow-xl">
+            <div className="fixed z-50 flex items-center justify-between w-full p-4 mb-5 bg-white shadow-xl">
                 <nav className="flex items-center justify-between w-full px-4">
                     <div
                         className="rounded px-[2rem] hover:bg-gray-100 transition-all duration-300 cursor-pointer"
