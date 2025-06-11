@@ -57,7 +57,7 @@ export default function Main() {
                         <div className="flex flex-col w-full gap-10 lg:flex-row">
                             {/* Panel de filtros */}
                             <aside className="w-full lg:w-1/4">
-                                <div className="sticky z-10 rounded-lg top-40">
+                                <div className="sticky z-40 rounded-lg top-40">
                                     <FilterPanel
                                         categorySelect={categorySelect}
                                         setCategorySelect={setCategorySelect}

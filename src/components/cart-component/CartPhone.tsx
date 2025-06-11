@@ -17,7 +17,7 @@ export default function CartPhone() {
         <div className="pt-28 lg:pt-0">
             <div
                 className={clsx(
-                    "fixed bg-white shadow-lg cart-phone lg:hidden -bottom-20 z-20",
+                    "fixed bg-white shadow-lg cart-phone lg:hidden -bottom-20 z-50",
                     "w-full md:max-w-[400px] md:right-10 rounded-4xl"
                 )}
             >

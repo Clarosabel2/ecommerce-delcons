@@ -56,8 +56,8 @@ export default function CartComponent() {
                     className={`absolute right-0 z-50 flex flex-col h-auto gap-2 p-2 mt-2 transition-all duration-300 bg-white shadow-2xl cursor-default w-80 top-full rounded-xl border-1 border-gray-300 
                     ${isHovered ? "animate-fade-in" : "animate-fade-out"}`}
                 >
-                    <div className="w-full">
-                        <p className="mb-2 text-xl font-semibold text-center text-gray-700">
+                    <div className="flex items-center w-full">
+                        <p className="self-center mb-2 text-xl font-semibold text-center text-gray-700">
                             Tu carrito
                         </p>
                     </div>
