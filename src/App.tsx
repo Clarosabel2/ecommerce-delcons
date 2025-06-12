@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/homePage/Home";
 import ProductDetail from "./pages/productDetailPage/ProductDetailPage";
 import Cart from "./pages/cart/CartPage";
-import CheckoutPage from "./pages/checkoutPage/CheckoutPage";
+
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -15,6 +15,7 @@ import Register from "./pages/Auth/Register";
 import Dashboard from "./pages/dashboard/DashboardPage";
 import PostLoginRedirect from "./pages/PostLoginRedirect";
 import MainLayout from "./layouts/MainLayout";
+import CheckoutPage from "./pages/checkoutPage/CheckoutPage";
 
 function App() {
     return (
