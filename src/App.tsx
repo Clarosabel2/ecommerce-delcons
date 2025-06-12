@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/homePage/Home";
 import ProductDetail from "./pages/productDetailPage/ProductDetailPage";
 import Cart from "./pages/cart/CartPage";
-import CheckoutPage from "./pages/checkoutPage";
+import CheckoutPage from "./pages/checkoutPage/CheckoutPage";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
