@@ -11,8 +11,8 @@ import Dashboard from "./pages/DashboardPage"
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import AuthLayout from "./layouts/AuthLayout";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
 
 
 import PostLoginRedirect from "./pages/PostLoginRedirect";
