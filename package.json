@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.31.9",
     "@midudev/tailwind-animations": "^0.2.0",
     "@number-flow/react": "^0.5.9",
     "@tailwindcss/vite": "^4.1.5",

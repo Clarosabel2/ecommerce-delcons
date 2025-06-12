@@ -3,9 +3,11 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import AnimatedLink from "./AnimatedLink";
 import CartComponent from "../cart-component/CartComponent";
-
+import { UserButton, useUser } from "@clerk/clerk-react";
 
 export default function Header() {
+    const { isLoaded, isSignedIn, user } = useUser();
+    const userRole = user?.publicMetadata?.role;
     const location = useLocation();
     const isCheckout = location.pathname === "/checkout";
     const navegate = useNavigate();
@@ -14,7 +16,7 @@ export default function Header() {
     };
     return (
         <div className="pb-20">
-            <div className="fixed z-30 flex items-center justify-between w-full p-4 mb-5 bg-white shadow-xl">
+            <div className="fixed z-30 flex items-center justify-between w-full p-4 mb-5 bg-white shadow-xl lg:z-50">
                 <nav className="flex items-center justify-between w-full px-4">
                     <div
                         className="rounded px-[2rem] hover:bg-gray-100 transition-all duration-300 cursor-pointer"
@@ -24,15 +26,19 @@ export default function Header() {
                     </div>
                     <div>
                         <ul className="flex items-center justify-center gap-2">
-                            {!isCheckout && (
+                            {!isCheckout && userRole !== "admin" && (
                                 <li className="hidden lg:block">
                                     <CartComponent />
                                 </li>
                             )}
                             <li>
-                                <AnimatedLink href="/auth">
-                                    Sign In
-                                </AnimatedLink>
+                                {isSignedIn ? (
+                                    <UserButton showName />
+                                ) : (
+                                    <AnimatedLink href="/auth/login">
+                                        Sign In
+                                    </AnimatedLink>
+                                )}
                             </li>
                         </ul>
                     </div>

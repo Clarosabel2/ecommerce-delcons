@@ -1,6 +1,6 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
-import { useCart } from "../../hooks/userCart";
+import { useCart } from "../../hooks/useCart";
 import { Item } from "../../models/Cart";
 import QuantitySelector from "../product-details/QuantitySelector"
 import NumberFlow from "@number-flow/react";

@@ -1,20 +1,63 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/HomePage";
-import ProductDetail from "./pages/ProductDetailPage";
-import Auth from "./pages/Auth"
-import Cart from "./pages/Cart";
-import CheckoutPage from "./pages/CheckoutPage";
+import Home from "./pages/homePage/Home";
+import ProductDetail from "./pages/productDetailPage";
+import Cart from "./pages/cart/CartPage";
+import CheckoutPage from "./pages/checkoutPage";
+
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import AuthLayout from "./pages/Auth/AuthLayout";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
+
+import Dashboard from "./pages/dashboard/DashboardPage";
+import PostLoginRedirect from "./pages/PostLoginRedirect";
+import MainLayout from "./layouts/MainLayout";
+
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/product/:id" element={<ProductDetail />} />
-                <Route path='/auth' element={<Auth/>}/>
-                <Route path='/cart' element={<Cart/>}/>
-                <Route path='/checkout' element={<CheckoutPage/>}/>
+                <Route path="/post-login" element={<PostLoginRedirect />} />
+                <Route
+                    path="/auth/login"
+                    element={
+                        <AuthLayout>
+                            <Login />
+                        </AuthLayout>
+                    }
+                />
+                <Route
+                    path="/auth/register"
+                    element={
+                        <AuthLayout>
+                            <Register />
+                        </AuthLayout>
+                    }
+                />
+                <Route element={<MainLayout></MainLayout>}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route
+                        path="/checkout"
+                        element={
+                            <ProtectedRoute>
+                                <CheckoutPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/dashboard"
+                        element={
+                            <ProtectedRoute requiredRole="admin">
+                                <Dashboard />
+                            </ProtectedRoute>
+                        }
+                    ></Route>
+                </Route>
             </Routes>
         </Router>
     );

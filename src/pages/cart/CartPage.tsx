@@ -1,21 +1,18 @@
-import React from "react";
-import Header from "../../components/ui/Header";
-import Footer from "../../components/ui/Footer";
-import { useCart } from "../../hooks/userCart";
+import { useCart } from "../../hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import QuantitySelector from "../../components/product-details/QuantitySelector";
 
 import ScrollToTop from "../../components/common/ScrollToTop";
+import { useUser } from "@clerk/clerk-react";
 
-
-export default function index() {
+export default function CartPage() {
     const navigate = useNavigate();
-    const { cart, clearCart,removeItem,updateItemQuantity } = useCart();
+    const { isSignedIn } = useUser();
+    const { cart, clearCart, removeItem, updateItemQuantity } = useCart();
     return (
         <>
             <ScrollToTop />
-            <Header />
             <div className="min-h-screen bg-gray-50">
                 <div className="container px-4 py-8 mx-auto">
                     <h1 className="mb-8 text-3xl font-bold text-gray-900">
@@ -39,32 +36,59 @@ export default function index() {
                                 ) : (
                                     <div className="space-y-4">
                                         {cart.items.map((item) => (
-                                            <div key={item.id} className="flex items-center justify-between p-4 border border-gray-300 rounded-lg">
+                                            <div
+                                                key={item.id}
+                                                className="flex items-center justify-between p-4 border border-gray-300 rounded-lg"
+                                            >
                                                 <div className="flex items-center gap-4">
-                                                    <img 
+                                                    <img
                                                         src={item.product.image}
                                                         alt={item.product.name}
                                                         className="object-contain w-20 h-20"
                                                     />
                                                     <div>
-                                                        <h3 className="font-medium">{item.product.name}</h3>
-                                                        <p className="text-sm text-gray-500">${item.product.price}</p>
-                                                        <p className="text-sm text-gray-500">Subtotal: ${item.subtotal.toFixed(2)}</p>
+                                                        <h3 className="font-medium">
+                                                            {item.product.name}
+                                                        </h3>
+                                                        <p className="text-sm text-gray-500">
+                                                            $
+                                                            {item.product.price}
+                                                        </p>
+                                                        <p className="text-sm text-gray-500">
+                                                            Subtotal: $
+                                                            {item.subtotal.toFixed(
+                                                                2
+                                                            )}
+                                                        </p>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div className="flex items-center gap-4">
                                                     <div className="flex items-center gap-2">
                                                         <QuantitySelector
                                                             className="lg:h-9 lg:w-9"
-                                                            value={item.quantity}
-                                                            onChange={(newQuantity) => updateItemQuantity(item.product.id, newQuantity)}
+                                                            value={
+                                                                item.quantity
+                                                            }
+                                                            onChange={(
+                                                                newQuantity
+                                                            ) =>
+                                                                updateItemQuantity(
+                                                                    item.product
+                                                                        .id,
+                                                                    newQuantity
+                                                                )
+                                                            }
                                                         />
                                                     </div>
-                                                    
+
                                                     <button
                                                         className="p-2 text-red-500 border rounded hover:bg-red-50"
-                                                        onClick={() => removeItem(item.product.id)}
+                                                        onClick={() =>
+                                                            removeItem(
+                                                                item.product.id
+                                                            )
+                                                        }
                                                     >
                                                         <FaTrash className="w-4 h-4" />
                                                     </button>
@@ -105,7 +129,15 @@ export default function index() {
                                 <button
                                     className="w-full px-4 py-3 mt-6 text-white transition-colors bg-blue-600 rounded-lg cursor-pointer hover:bg-blue-700"
                                     disabled={cart.items.length === 0}
-                                    onClick={() => navigate("/checkout")}
+                                    onClick={() => {
+                                        if (!isSignedIn) {
+                                            navigate("/auth/login",{
+                                                state:{from:"/checkout"}
+                                            });
+                                        } else {
+                                            navigate("/checkout");
+                                        }
+                                    }}
                                 >
                                     Proceder al pago
                                 </button>
@@ -123,7 +155,6 @@ export default function index() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
     );
 }

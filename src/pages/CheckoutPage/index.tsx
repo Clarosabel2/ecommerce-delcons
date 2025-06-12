@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useCart } from "../../hooks/userCart";
-import Header from "../../components/ui/Header";
+import { useCart } from "../../hooks/useCart";
 import PaymentForm from "../../components/credit-card/PaymentForm";
 
 export const CheckoutPage = () => {
@@ -30,12 +29,10 @@ export const CheckoutPage = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(formData);
-        // Aquí iría la lógica para procesar el pago
     };
 
     return (
         <>
-            <Header />
             <div className="min-h-screen bg-gray-50">
                 <div className="container px-4 py-8 mx-auto">
                     <h1 className="mb-8 text-3xl font-bold text-gray-900">

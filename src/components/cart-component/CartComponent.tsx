@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { CiShoppingCart } from "react-icons/ci";
-import { useCart } from "../../hooks/userCart";
+import { useCart } from "../../hooks/useCart";
 import CartItem from "./CartItem";
 import NumberFlow from "@number-flow/react";
 import { useNavigate } from "react-router-dom";
