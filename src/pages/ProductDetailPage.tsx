@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Product from "../../models/Product";
-import { getProductById } from "../../services/StoreApi";
-import Header from "../../components/ui/Header";
-import Footer from "../../components/ui/Footer";
-import ScrollToTop from "../../components/common/ScrollToTop";
-import { useCart } from "../../hooks/useCart";
+import Product from "../models/Product";
+import { getProductById } from "../services/StoreApi";
+import Header from "../components/ui/Header";
+import Footer from "../components/ui/Footer";
+import ScrollToTop from "../components/common/ScrollToTop";
+import { useCart } from "../hooks/useCart";
 import { OrbitProgress } from "react-loading-indicators";
-import CartPhone from "../../components/cart-component/CartPhone";
-import ProductDetails from "../../components/product-details/ProductDetails";
+import CartPhone from "../components/cart-component/CartPhone";
+import ProductDetails from "../components/product-details/ProductDetails";
 
 export default function ProductDetailPage() {
     const { id } = useParams();

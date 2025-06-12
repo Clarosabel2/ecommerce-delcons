@@ -1,9 +1,9 @@
-import { useCart } from "../../hooks/useCart";
+import { useCart } from "../hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import QuantitySelector from "../../components/product-details/QuantitySelector";
+import QuantitySelector from "../components/product-details/QuantitySelector";
 
-import ScrollToTop from "../../components/common/ScrollToTop";
+import ScrollToTop from "../components/common/ScrollToTop";
 import { useUser } from "@clerk/clerk-react";
 
 export default function CartPage() {

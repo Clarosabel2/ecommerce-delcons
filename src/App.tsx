@@ -1,21 +1,23 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/homePage/Home";
-import ProductDetail from "./pages/productDetailPage/ProductDetailPage";
-import Cart from "./pages/cart/CartPage";
-import CheckoutPage from "./pages/checkoutPage/CheckoutPage";
+import Cart from "./pages/CartPage"
+import ProductDetail from "./pages/ProductDetailPage"
+import CheckoutPage from "./pages/CheckoutPage"
+import Dashboard from "./pages/DashboardPage"
+
 
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import AuthLayout from "./layouts/AuthLayout";
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 
-import Dashboard from "./pages/dashboard/DashboardPage";
+
 import PostLoginRedirect from "./pages/PostLoginRedirect";
 import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home";
 
 
 function App() {
