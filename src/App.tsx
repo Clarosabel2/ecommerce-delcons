@@ -9,7 +9,7 @@ import CheckoutPage from "./pages/checkoutPage/CheckoutPage";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import AuthLayout from "./pages/Auth/AuthLayout";
+import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 
