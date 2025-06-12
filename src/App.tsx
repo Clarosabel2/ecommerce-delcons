@@ -6,8 +6,8 @@ import ProductDetail from "./pages/ProductDetailPage"
 import CheckoutPage from "./pages/CheckoutPage"
 import Dashboard from "./pages/DashboardPage"
 
-import Login from "./pages/Auth/Login"
-import Register from "./pages/Auth/Register"
+import Login from "./pages/authp/Login"
+import Register from "./pages/authp/Register"
 
 
 import ProtectedRoute from "./components/ProtectedRoute";
