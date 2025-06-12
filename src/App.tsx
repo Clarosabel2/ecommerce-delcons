@@ -6,13 +6,13 @@ import ProductDetail from "./pages/ProductDetailPage"
 import CheckoutPage from "./pages/CheckoutPage"
 import Dashboard from "./pages/DashboardPage"
 
+import Login from "./pages/auth/Login"
+import Register from "./pages/auth/Register"
 
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import AuthLayout from "./layouts/AuthLayout";
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
 
 
 import PostLoginRedirect from "./pages/PostLoginRedirect";
