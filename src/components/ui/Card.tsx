@@ -5,7 +5,6 @@ import { FaCartPlus } from "react-icons/fa";
 import RatingStar from "../product-details/RatingStar";
 import { useCart } from "../../hooks/useCart";
 import { Item } from "../../models/Cart";
-import ImageZoomShadow from "./ImageZoomShadow";
 
 type Props = {
     product: Product;
@@ -24,7 +23,7 @@ export default function Card({ product }: Props) {
 
     return (
         <div
-            className="overflow-hidden transition-all duration-300 bg-white shadow-sm cursor-pointer group rounded-2xl hover:shadow-xl active:shadow-none"
+            className="overflow-hidden transition-all duration-300 bg-white shadow-sm cursor-pointer group rounded-2xl lg:hover:shadow-xl active:shadow-none lg:hover:scale-105"
             onClick={handleClick}
         >
             {/* Imagen y badge de descuento */}
@@ -95,13 +94,11 @@ export default function Card({ product }: Props) {
                         </div>
                     </div>
                     <button
-                        className="p-2 text-white transition-colors bg-blue-600 rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="p-2 text-white transition-all bg-blue-600 rounded-full cursor-pointer hover:bg-blue-700 hover:shadow-2xl hover:scale-110 active:scale-100"
                         onClick={(e) => {
                             e.stopPropagation();
                             addItem(new Item(1, product));
-                            
                         }}
-                        disabled={existingItem?.quantity === product.stock}
                     >
                         <FaCartPlus className="w-5 h-5" />
                     </button>

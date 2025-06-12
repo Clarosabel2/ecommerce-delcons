@@ -4,7 +4,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { useCart } from "../../hooks/useCart";
 import CartItem from "./CartItem";
 import NumberFlow from "@number-flow/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AnimatedLink from "../ui/AnimatedLink";
 import clsx from "clsx";
 
@@ -39,8 +39,8 @@ export default function CartComponent() {
             })}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-        > 
-             <div className={clsx({ 'animate-jelly': isAddItem })}>
+        >
+            <div className={clsx({ "animate-jelly": isAddItem })}>
                 <AnimatedLink href="/cart">
                     <div className="relative flex">
                         <CiShoppingCart className="mr-1 text-4xl" />
@@ -56,10 +56,16 @@ export default function CartComponent() {
                     className={`absolute right-0 z-50 flex flex-col h-auto gap-2 p-2 mt-2 transition-all duration-300 bg-white shadow-2xl cursor-default w-80 top-full rounded-xl border-1 border-gray-300 
                     ${isHovered ? "animate-fade-in" : "animate-fade-out"}`}
                 >
-                    <div className="flex items-center w-full">
+                    <div className="flex items-center justify-between w-full px-5">
                         <p className="self-center mb-2 text-xl font-semibold text-center text-gray-700">
                             Tu carrito
                         </p>
+                        <Link
+                            to="/cart"
+                            className="text-xs hover:underline hover:text-blue-600"
+                        >
+                            Ver carrito
+                        </Link>
                     </div>
                     <div className="space-y-2 overflow-y-auto text-sm text-gray-600 max-h-72">
                         {cart.items.length === 0 ? (

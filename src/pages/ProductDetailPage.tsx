@@ -16,7 +16,6 @@ export default function ProductDetailPage() {
     const [quantity, setQuantity] = useState<number>(1);
     const [product, setProduct] = useState<Product>();
     const [loading, setLoading] = useState(true);
-
     
     useEffect(() => {
         const fetchProduct = async () => {
@@ -32,8 +31,6 @@ export default function ProductDetailPage() {
         };
         fetchProduct();
     }, [id]);
-
-    
 
     return (
         <div>

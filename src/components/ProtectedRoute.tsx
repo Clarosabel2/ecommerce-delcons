@@ -1,11 +1,12 @@
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { Navigate, useLocation } from "react-router-dom";
 import CircleProgessPage from "./ui/CircleProgessPage";
+import { RolUser } from "../enums/RolUser";
 
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  requiredRole?: "admin" | "customer";
+  requiredRole?: RolUser;
 }
 
 

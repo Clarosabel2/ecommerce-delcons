@@ -72,7 +72,7 @@ export default function FilterPanel({
             <div className="relative ">
                 {/* Panel de filtros para desktop */}
                 <div className="hidden lg:block">
-                    <div className="p-4 bg-white rounded-lg shadow-2xl shadow-md-6">
+                    <div className="p-4 bg-white shadow rounded-2xl">
                         {/* Contenido del panel para desktop */}
                         <FilterContent
                             priceRange={priceRange}
