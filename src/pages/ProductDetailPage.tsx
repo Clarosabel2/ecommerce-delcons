@@ -38,7 +38,6 @@ export default function ProductDetailPage() {
     return (
         <div>
             <ScrollToTop />
-            <Header />
             {loading && (
                 <div
                     className="relative flex items-center justify-center w-full"
@@ -68,7 +67,6 @@ export default function ProductDetailPage() {
                     <CartPhone />
                 </div>
             )}
-            <Footer />
         </div>
     );
 }

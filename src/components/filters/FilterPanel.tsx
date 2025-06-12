@@ -6,6 +6,7 @@ import Category from "../../models/Category";
 import { getCategories } from "../../services/StoreApi";
 import ListItem from "../product-details/ListItem";
 import FilterContent from "./FilterContent";
+import clsx from "clsx";
 
 type Props = {
     categorySelect: string[];
@@ -63,6 +64,11 @@ export default function FilterPanel({
 
     return (
         <>
+        <div className={clsx("sticky z-40 rounded-lg top-25",
+            {"z-50":showMobile},
+            {"z-20":!showMobile}
+        )}>
+            
             <div className="relative ">
                 {/* Panel de filtros para desktop */}
                 <div className="hidden lg:block">
@@ -134,6 +140,7 @@ export default function FilterPanel({
                     </div>
                 </div>
             </div>
+        </div>
         </>
     );
 }
